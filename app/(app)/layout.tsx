@@ -22,7 +22,7 @@ export default function PublicLayout({
         </nav>
         {children}
       </ThemeProvider>
-      <AppFooter />
+      {/* <AppFooter /> */}
     </div>
   )
 }
