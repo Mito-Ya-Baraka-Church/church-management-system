@@ -93,87 +93,90 @@ export function SignInAuthForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="first_name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>First Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="last_name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Last Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    // <Form {...form}>
+    //   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+    //     <FormField
+    //       control={form.control}
+    //       name="first_name"
+    //       render={({ field }) => (
+    //         <FormItem>
+    //           <FormLabel>First Name</FormLabel>
+    //           <FormControl>
+    //             <Input placeholder="Your name" {...field} />
+    //           </FormControl>
+    //           <FormMessage />
+    //         </FormItem>
+    //       )}
+    //     />
+    //     <FormField
+    //       control={form.control}
+    //       name="last_name"
+    //       render={({ field }) => (
+    //         <FormItem>
+    //           <FormLabel>Last Name</FormLabel>
+    //           <FormControl>
+    //             <Input placeholder="Your name" {...field} />
+    //           </FormControl>
+    //           <FormMessage />
+    //         </FormItem>
+    //       )}
+    //     />
 
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Your email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    //     <FormField
+    //       control={form.control}
+    //       name="email"
+    //       render={({ field }) => (
+    //         <FormItem>
+    //           <FormLabel>Email</FormLabel>
+    //           <FormControl>
+    //             <Input placeholder="Your email" {...field} />
+    //           </FormControl>
+    //           <FormMessage />
+    //         </FormItem>
+    //       )}
+    //     />
 
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Enter your password"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    //     <FormField
+    //       control={form.control}
+    //       name="password"
+    //       render={({ field }) => (
+    //         <FormItem>
+    //           <FormLabel>Password</FormLabel>
+    //           <FormControl>
+    //             <Input
+    //               type="password"
+    //               placeholder="Enter your password"
+    //               {...field}
+    //             />
+    //           </FormControl>
+    //           <FormMessage />
+    //         </FormItem>
+    //       )}
+    //     />
 
-        <div className="flex flex-row space-x-2">
-          <Button type="submit" className={cn("w-1/2 ")}>
-            Sign In with Email
-          </Button>
-          <Link href="/auth/login" className={cn("w-1/2 text-center ")}>
-            <Button variant="ghost">Login</Button>
-          </Link>
-        </div>
-        {/* forgot password  */}
-        <div className="flex flex-row justify-center">
-          <Link
-            href="/auth/forgot-password"
-            className={cn("w-1/2 text-center ")}
-          >
-            <span className=" text-sm text-muted-foreground underline  hover:text-primary">
-              Forgot Password?
-            </span>
-          </Link>
-        </div>
-      </form>
-    </Form>
+    //     <div className="flex flex-row space-x-2">
+    //       <Button type="submit" className={cn("w-1/2 ")}>
+    //         Sign In with Email
+    //       </Button>
+    //       <Link href="/auth/login" className={cn("w-1/2 text-center ")}>
+    //         <Button variant="ghost">Login</Button>
+    //       </Link>
+    //     </div>
+    //     {/* forgot password  */}
+    //     <div className="flex flex-row justify-center">
+    //       <Link
+    //         href="/auth/forgot-password"
+    //         className={cn("w-1/2 text-center ")}
+    //       >
+    //         <span className=" text-sm text-muted-foreground underline  hover:text-primary">
+    //           Forgot Password?
+    //         </span>
+    //       </Link>
+    //     </div>
+    //   </form>
+    // </Form>
+    <h2 className="text-2xl font-bold text-center text-primary">
+      Registration is currently disabled
+    </h2>
   )
 }
