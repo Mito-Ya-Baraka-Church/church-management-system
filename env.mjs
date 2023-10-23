@@ -6,12 +6,9 @@ export const env = createEnv({
     // Directus
     DIRECTUS_URL: z.string(),
     DIRECTUS_TOKEN_EXPIRATION_ADJUSTMENT: z.string(),
-    DIRECTUS_USER_CREATOR_TOKEN: z.string().optional(),
-    DIRECTUS_DEFAULT_ROLE_ID: z.string(),
+    // DIRECTUS_USER_CREATOR_TOKEN: z.string().optional(),
+    // DIRECTUS_DEFAULT_ROLE_ID: z.string(),
     DIRECTUS_PROJECT_NAME: z.string().optional(),
-
-    // Github
-    GITHUB_ACCESS_TOKEN: z.string().optional(),
   },
   client: {
     // App
@@ -30,15 +27,12 @@ export const env = createEnv({
     DIRECTUS_URL: process.env.DIRECTUS_URL,
     DIRECTUS_TOKEN_EXPIRATION_ADJUSTMENT:
       process.env.DIRECTUS_TOKEN_EXPIRATION_ADJUSTMENT,
-    DIRECTUS_DEFAULT_ROLE_ID: process.env.DIRECTUS_DEFAULT_ROLE_ID,
-    DIRECTUS_USER_CREATOR_TOKEN: process.env.DIRECTUS_USER_CREATOR_TOKEN,
+    // DIRECTUS_DEFAULT_ROLE_ID: process.env.DIRECTUS_DEFAULT_ROLE_ID,
+    // DIRECTUS_USER_CREATOR_TOKEN: process.env.DIRECTUS_USER_CREATOR_TOKEN,
     DIRECTUS_PROJECT_NAME: process.env.DIRECTUS_PROJECT_NAME,
 
     // Posthog
-    NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
-    NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
-
-    // Github
-    GITHUB_ACCESS_TOKEN: process.env.GITHUB_ACCESS_TOKEN,
+    // NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+    // NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
   },
 })
