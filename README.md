@@ -1,6 +1,20 @@
-# Next js Directus Starter
+# Mito Ya Baraka Church Management System
 
-Next.js 13 starter for building apps with Directus CMS Radix UI and Tailwind CSS.
+A Church Management Platform for Mito Ya Baraka Church.
+
+## Features
+
+- Staff Login 
+
+## Roadmap
+
+- [✅] Staff Login
+- [ ] Member Registration
+- [ ] Visitor Registration
+- [ ] View Members
+- [ ] View Visitors
+- [ ] Eit Members & Visitors
+- [ ] Add Analytics
 
 ## Usage
 
@@ -43,31 +57,6 @@ pnpm run dev
 
 ### You can now view the app in your browser at http://localhost:3000 🚀
 
-## Features
-
-- Next.js 13 App Directory
-- Directus CMS
-- Radix UI Primitives
-- Tailwind CSS
-- Icons from [Lucide](https://lucide.dev)
-- Themes with next-themes and Tailwind CSS
-- Tailwind CSS class sorting, merging and linting.
-- Next js Server Side Components (SSC) & Client Side Components (CSC)
-- Next js Form Actions
-- Analytics with Posthog
-
-## Roadmap
-
-- [✅] Add Login and Register
-- [✅] Add Analytics
-- [ ] Add Installation Instructions Documentation
-- [ ] Add Dashboard Page
-- [ ] Add Simple Blog
-- [ ] Add SEO
-- [ ] Add Auth Guard
-- [ ] Add Password Reset and Forgot Password
-- [ ] Add User Profile
-- [ ] Add User Settings
 
 ## Customizations and configurations.
 
