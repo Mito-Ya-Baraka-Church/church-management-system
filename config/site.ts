@@ -29,8 +29,12 @@ export const siteConfig = {
     },
 
     {
-      title: "Contact",
-      href: "/contact",
+      title: "Visitor",
+      href: "/visitor",
+    },
+    {
+      title: "Member",
+      href: "/member",
     },
     {
       title: "Login",
