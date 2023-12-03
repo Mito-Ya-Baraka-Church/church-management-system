@@ -122,7 +122,7 @@ export function VisitorForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* using grid show 3 cols on desktop and 2 on tablet 1 on mbile */}
-        <div className="px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:px-2 ">
+        <div className="px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:px-2 ">
 
           <FormField
             control={form.control}
@@ -170,9 +170,9 @@ export function VisitorForm() {
             control={form.control}
             name="is_member"
             render={({ field }) => (
-              <FormItem >
-                <FormLabel>Member</FormLabel>
-                <FormControl>
+              <FormItem className="">
+                <FormLabel className="mr-3">Member</FormLabel>
+                <FormControl >
                   <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
@@ -298,7 +298,7 @@ export function VisitorForm() {
               name="is_married"
               render={({ field }) => (
                 <FormItem >
-                  <FormLabel>Married</FormLabel>
+                  <FormLabel className="mr-3">Married</FormLabel>
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -378,7 +378,7 @@ export function VisitorForm() {
               name="is_baptized"
               render={({ field }) => (
                 <FormItem >
-                  <FormLabel>Baptized</FormLabel>
+                  <FormLabel className="mr-3">Baptized</FormLabel>
                   <FormControl>
                     <FormControl>
                       <Checkbox
@@ -454,7 +454,7 @@ export function VisitorForm() {
               name="is_born_again"
               render={({ field }) => (
                 <FormItem >
-                  <FormLabel>Born Again</FormLabel>
+                  <FormLabel className="mr-3">Born Again</FormLabel>
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -530,7 +530,7 @@ export function VisitorForm() {
             Register
           </Button>
 
-          <Button variant="ghost" className={cn("w-1/4 mx-8 text-center ")}><Link href="/auth/sign-in">Cancel </Link></Button>
+          <Link href="/auth/sign-in" className={cn("w-1/4 mx-8 text-center ")}><Button variant="ghost">Cancel </Button></Link>
 
         </div>
       </form>
