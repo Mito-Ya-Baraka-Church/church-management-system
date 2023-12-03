@@ -39,6 +39,8 @@ import { Checkbox } from "../ui/checkbox"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 
+import { nationalities } from "@/lib/form-utils"
+
 
 
 const visitorFormSchema = z.object({
@@ -220,7 +222,20 @@ export function VisitorForm() {
               <FormItem >
                 {/* <FormLabel>Nationality</FormLabel> */}
                 <FormControl className="h-14 rounded-xl ">
-                  <Input placeholder="Nationality"  />
+                <Select
+                  
+                  // onValueChange={(value: string) =>
+                  //   setMarriageDate(addDays(new Date(), parseInt(value))
+                  //   )}
+                  
+                >
+                  <SelectTrigger className="h-14 rounded-xl ">
+                    <SelectValue placeholder="Nationality"  />
+                  </SelectTrigger>
+                  <SelectContent position="popper" className="h-36">
+                    {nationalities.map((nationality,index)=>(<SelectItem value={nationality}  >{nationality}</SelectItem>))}
+                  </SelectContent>
+           </Select>       
                 </FormControl>
                 <FormMessage />
               </FormItem>
