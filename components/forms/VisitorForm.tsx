@@ -233,8 +233,23 @@ export function VisitorForm() {
             render={({ field }) => (
               <FormItem >
                 {/* <FormLabel>Gender</FormLabel> */}
-                <FormControl className="h-14 rounded-xl ">
-                  <Input placeholder="Gender"  />
+                <FormControl className="h-14 rounded-xl " >
+                  {/* <Input placeholder="Gender"  /> */}
+                  <Select
+                  
+                          // onValueChange={(value: string) =>
+                          //   setMarriageDate(addDays(new Date(), parseInt(value))
+                          //   )}
+                          
+                        >
+                          <SelectTrigger className="h-14 rounded-xl">
+                            <SelectValue placeholder="Gender"  />
+                          </SelectTrigger>
+                          <SelectContent position="popper">
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                          </SelectContent>
+                   </Select>       
                 </FormControl>
                 <FormMessage />
               </FormItem>
