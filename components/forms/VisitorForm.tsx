@@ -122,16 +122,16 @@ export function VisitorForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* using grid show 3 cols on desktop and 2 on tablet 1 on mbile */}
-        <div className="px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:px-2 ">
+        <div className="px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:px-2 ">
 
           <FormField
             control={form.control}
             name="full_name"
             render={({ field }) => (
               <FormItem >
-                <FormLabel>Full Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Visitor 3" {...field} />
+               {/* <FormLabel>Full Name</FormLabel> */}
+                <FormControl className="h-14 rounded-xl ">
+                  <Input placeholder="Full Name"  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -142,10 +142,10 @@ export function VisitorForm() {
             control={form.control}
             name="phone_number"
             render={({ field }) => (
-              <FormItem >
-                <FormLabel>Phone Number</FormLabel>
-                <FormControl>
-                  <Input placeholder="2342342" {...field} />
+              <FormItem  >
+                {/* <FormLabel>Phone Number</FormLabel> */}
+                <FormControl className="h-14 rounded-xl ">
+                  <Input placeholder="Phone Number"  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -156,10 +156,10 @@ export function VisitorForm() {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem >
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="34adf@adsfa.com" {...field} />
+              <FormItem  >
+                {/* <FormLabel>Email</FormLabel> */}
+                <FormControl className="h-14 rounded-xl ">
+                  <Input placeholder="Email"  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -170,14 +170,16 @@ export function VisitorForm() {
             control={form.control}
             name="is_member"
             render={({ field }) => (
-              <FormItem className="">
-                <FormLabel className="mr-3">Member</FormLabel>
-                <FormControl >
+              <FormItem className="flex items-center h-full">
+                <div>
+                <FormLabel className="mr-3 ml-6">Member</FormLabel>
+                <FormControl className="h-4 w-4" >
                   <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
+
                   />
-                </FormControl>
+                </FormControl></div>
                 <FormMessage />
               </FormItem>
             )}
@@ -188,9 +190,9 @@ export function VisitorForm() {
             name="tribe"
             render={({ field }) => (
               <FormItem >
-                <FormLabel>Tribe</FormLabel>
-                <FormControl>
-                  <Input placeholder="asdfas" {...field} />
+                {/* <FormLabel>Tribe</FormLabel> */}
+                <FormControl className="h-14 rounded-xl ">
+                  <Input placeholder="Tribe"  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -202,9 +204,9 @@ export function VisitorForm() {
             name="location_name"
             render={({ field }) => (
               <FormItem >
-                <FormLabel>Location Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="asdfasf" {...field} />
+                {/* <FormLabel>Location Name</FormLabel> */}
+                <FormControl className="h-14 rounded-xl ">
+                  <Input placeholder="Location" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -216,9 +218,9 @@ export function VisitorForm() {
             name="nationality"
             render={({ field }) => (
               <FormItem >
-                <FormLabel>Nationality</FormLabel>
-                <FormControl>
-                  <Input placeholder="asdfasdf" {...field} />
+                {/* <FormLabel>Nationality</FormLabel> */}
+                <FormControl className="h-14 rounded-xl ">
+                  <Input placeholder="Nationality"  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -230,9 +232,9 @@ export function VisitorForm() {
             name="gender"
             render={({ field }) => (
               <FormItem >
-                <FormLabel>Gender</FormLabel>
-                <FormControl>
-                  <Input placeholder="male" {...field} />
+                {/* <FormLabel>Gender</FormLabel> */}
+                <FormControl className="h-14 rounded-xl ">
+                  <Input placeholder="Gender"  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -244,17 +246,17 @@ export function VisitorForm() {
             name="day_of_visit"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>Date of Visit</FormLabel>
+                {/* <FormLabel>Date of Visit</FormLabel> */}
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[280px] justify-start text-left font-normal",
+                        " col-auto md:row-auto justify-start text-left font-normal h-14 rounded-xl",
                         !field.value && "text-muted-foreground"
                       )}
                     >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      <CalendarIcon className="mr-2 h-4 w-4" /> <span className="font-bold mr-3">Date of Visit : </span>  
                       {dateOfVisit ? format(dateOfVisit, "PPP") : <span>Pick a dateOfVisit</span>}
                     </Button>
                   </PopoverTrigger>
@@ -297,8 +299,8 @@ export function VisitorForm() {
               control={form.control}
               name="is_married"
               render={({ field }) => (
-                <FormItem >
-                  <FormLabel className="mr-3">Married</FormLabel>
+                <FormItem className="">
+                  <FormLabel className="mr-3 ml-6">Married</FormLabel>
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -321,17 +323,17 @@ export function VisitorForm() {
                   // if is married is true, then hide the field
 
                   <FormItem className="flex flex-col">
-                    <FormLabel>Marriage Date</FormLabel>
+                    {/* <FormLabel>Marriage Date</FormLabel> */}
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
                           variant={"outline"}
                           className={cn(
-                            "w-[280px] justify-start text-left font-normal",
+                            " justify-start text-left font-normal h-14 rounded-xl",
                             !field.value && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          <CalendarIcon className="mr-2 h-4 w-4" /><span className="font-bold mr-3">Marriage Date : </span>  
                           {marriageDate ? format(marriageDate, "PPP") : <span>Pick a date</span>}
                         </Button>
                       </PopoverTrigger>
@@ -377,8 +379,8 @@ export function VisitorForm() {
               control={form.control}
               name="is_baptized"
               render={({ field }) => (
-                <FormItem >
-                  <FormLabel className="mr-3">Baptized</FormLabel>
+                <FormItem className="">
+                  <FormLabel className="mr-3 ml-6">Baptized</FormLabel>
                   <FormControl>
                     <FormControl>
                       <Checkbox
@@ -398,17 +400,17 @@ export function VisitorForm() {
                 name="baptism_date"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Baptism Date</FormLabel>
+                    {/* <FormLabel>Baptism Date</FormLabel> */}
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
                           variant={"outline"}
                           className={cn(
-                            "w-[280px] justify-start text-left font-normal",
+                            " justify-start text-left font-normal h-14 rounded-xl",
                             !field.value && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          <CalendarIcon className="mr-2 h-4 w-4" /><span className="font-bold mr-3">Baptism Date : </span>  
                           {baptismDate ? format(baptismDate, "PPP") : <span>Pick a date</span>}
                         </Button>
                       </PopoverTrigger>
@@ -453,8 +455,8 @@ export function VisitorForm() {
               control={form.control}
               name="is_born_again"
               render={({ field }) => (
-                <FormItem >
-                  <FormLabel className="mr-3">Born Again</FormLabel>
+                <FormItem className="">
+                  <FormLabel className="mr-3 ml-6" >Born Again</FormLabel>
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -472,17 +474,17 @@ export function VisitorForm() {
                 name="born_again_date"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Born Again Date</FormLabel>
+                    {/* <FormLabel>Born Again Date</FormLabel> */}
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
                           variant={"outline"}
                           className={cn(
-                            "w-[280px] justify-start text-left font-normal",
+                            "justify-start text-left font-normal h-14 rounded-xl",
                             !field.value && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          <CalendarIcon className="mr-2 h-4 w-4" /><span className="font-bold mr-3">Born Again Date : </span>  
                           {bornAgainDate ? format(bornAgainDate, "PPP") : <span>Pick a date</span>}
                         </Button>
                       </PopoverTrigger>
@@ -530,7 +532,7 @@ export function VisitorForm() {
             Register
           </Button>
 
-          <Link href="/auth/sign-in" className={cn("w-1/4 mx-8 text-center ")}><Button variant="ghost">Cancel </Button></Link>
+          <Link href="/auth/sign-in" className={cn("w-1/4  text-center ")}><Button variant="ghost">Cancel </Button></Link>
 
         </div>
       </form>
