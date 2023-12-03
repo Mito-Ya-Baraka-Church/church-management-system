@@ -40,6 +40,7 @@ import { Calendar as CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 
 import { nationalities } from "@/lib/form-utils"
+import { ethnicGroups } from "@/lib/form-utils" 
 
 
 
@@ -115,6 +116,8 @@ export function VisitorForm() {
     // Handle form submission here
     console.log(data);
   };
+
+  const tribes = ethnicGroups;
 
   return (
 
@@ -194,7 +197,20 @@ export function VisitorForm() {
               <FormItem >
                 {/* <FormLabel>Tribe</FormLabel> */}
                 <FormControl className="h-14 rounded-xl ">
-                  <Input placeholder="Tribe"  />
+                <Select
+                  
+                  // onValueChange={(value: string) =>
+                  //   setMarriageDate(addDays(new Date(), parseInt(value))
+                  //   )}
+                  
+                >
+                  <SelectTrigger className="h-14 rounded-xl ">
+                    <SelectValue placeholder="Tribe"  />
+                  </SelectTrigger>
+                  <SelectContent position="popper" className="h-36">
+                    {tribes.map((tribe,index)=>(<SelectItem value={tribe}  >{tribe}</SelectItem>))}
+                  </SelectContent>
+           </Select>       
                 </FormControl>
                 <FormMessage />
               </FormItem>
