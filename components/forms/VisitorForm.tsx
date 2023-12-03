@@ -302,7 +302,7 @@ export function VisitorForm() {
                   </PopoverContent>
                 </Popover>
                 <FormDescription>
-                  Date of visit must be in the past 10 days or today
+                  <span className="ml-3 italic"> Date of visit must be in the past 10 days or today</span>
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -547,7 +547,7 @@ export function VisitorForm() {
             Register
           </Button>
 
-          <Link href="/auth/sign-in" className={cn("w-1/4  text-center ")}><Button variant="ghost">Cancel </Button></Link>
+          <Button variant="ghost"className={cn("w-1/4  text-center ")}><Link href="/auth/sign-in" >Cancel</Link></Button>
 
         </div>
       </form>
