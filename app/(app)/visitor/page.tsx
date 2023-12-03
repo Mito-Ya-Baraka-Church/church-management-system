@@ -13,7 +13,7 @@ export default function IndexPage() {
       </div>
       
     </section>
-    <div className=" m-10 p-6 shadow-lg rounded-lg "><VisitorForm /></div>
+    <div className=" m-10 px-14 py-6 shadow-lg rounded-lg "><VisitorForm /></div>
     
    </>
   )
