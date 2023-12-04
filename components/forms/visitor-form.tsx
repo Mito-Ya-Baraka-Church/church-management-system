@@ -426,7 +426,8 @@ export function VisitorForm() {
               name="is_baptized"
               render={({ field }) => (
                 <FormItem className="">
-                  <FormLabel className="mr-3 ml-6">Baptized</FormLabel>
+                  <FormLabel className="mr-3 ml-6 my-
+                  ">Baptized</FormLabel>
                   <FormControl>
                     <FormControl>
                       <Checkbox

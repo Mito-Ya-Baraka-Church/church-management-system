@@ -1,4 +1,4 @@
-import { VisitorForm } from "@/components/forms/VisitorForm";
+import { VisitorForm } from "@/components/forms/visitor-form";
 
 export default function IndexPage() {
   return (
