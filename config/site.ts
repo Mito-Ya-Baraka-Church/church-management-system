@@ -6,8 +6,8 @@ import { env } from "@/env.mjs"
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  title: "Next Js Directus Starter",
-  name: "Next-js-directus-starter",
+  title: "Mito ya Baraka Church Register",
+  name: "Mito ya Baraka Church",
   canonical: "https://nextjs-starter-shadcn.vercel.app/",
   domain: "https://nextjs-starter-shadcn.vercel.app/",
   // directusUrl: env.DIRECTUS_URL,

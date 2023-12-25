@@ -1,16 +1,18 @@
-import { VisitorForm } from "@/components/forms/visitor-form";
+import { RegistrationFormGroup } from "@/components/forms/registration-form-group";
+
 
 export default function IndexPage() {
   return (
     <>
-      <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
-        <div className="flex w-full flex-col items-center gap-2 justify-center text-center  ">
-          <h2 className="font-heading text-3xl font-extrabold  leading-[1.1] sm:text-3xl md:text-4xl">
-            Visitor Registration
+      <section className="container grid items-center gap-6 py-8 md:py-10">
+        <h2 className="font-heading text-3xl font-extrabold  leading-[1.1] sm:text-3xl md:text-4xl text-center my-4">
+          Registration Form
           </h2>
+      <div className="py-6 m-2 md:mx-10 md:mb-10 md:px-14 md:py-10">
+     
+        <RegistrationFormGroup/>      
         </div>
       </section>
-      <div className=" m-2 md:mx-10 md:mb-10 md:px-14 md:py-6 shadow-lg rounded-lg "><VisitorForm /></div>
     </>
   )
 }

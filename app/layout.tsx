@@ -79,7 +79,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ProgressBar />
           <CustomPostHogProvider>
             <CustomProvider>
-              <div className="relative flex min-h-screen flex-col">
+              <div className="relative flex flex-col min-h-screen">
                 {children}
               </div>
             </CustomProvider>

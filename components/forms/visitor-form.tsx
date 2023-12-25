@@ -42,6 +42,16 @@ import { Calendar } from "@/components/ui/calendar"
 import { nationalities } from "@/lib/form-utils"
 import { ethnicGroups } from "@/lib/form-utils" 
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
+
 
 
 const visitorFormSchema = z.object({
@@ -81,10 +91,10 @@ type AccountFormValues = z.infer<typeof visitorFormSchema>;
 
 // This can come from your database or API.
 const defaultValues: Partial<AccountFormValues> = {
-  full_name: "Visitor 3",
-  day_of_visit: new Date("2023-11-01"),
-  phone_number: "2342342",
-  email: "34adf@adsfa.com",
+  full_name: "",
+  day_of_visit: new Date(),
+  phone_number: "",
+  email: "",
   is_married: true,
   marriage_date: new Date("2023-11-01"),
   is_baptized: true,
@@ -92,9 +102,9 @@ const defaultValues: Partial<AccountFormValues> = {
   is_born_again: true,
   born_again_date: new Date("2023-11-01T12:00:00"),
   is_member: true,
-  tribe: "asdfas",
-  location_name: "asdfasf",
-  nationality: "asdfasdf",
+  tribe: "",
+  location_name: "",
+  nationality: "Tanzanian",
   gender: "male",
 };
 
@@ -122,12 +132,18 @@ export function VisitorForm() {
   return (
 
 
+    <Card>
+    <CardHeader className="text-center">
 
+      <CardTitle>Visitor Registration</CardTitle>
+      <CardDescription>Add Visitor Details</CardDescription>
+    </CardHeader>
+    <CardContent>
 
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* using grid show 3 cols on desktop and 2 on tablet 1 on mbile */}
-        <div className="px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:px-2 ">
+        <div className="grid grid-cols-1 gap-6 px-2 md:grid-cols-2 lg:grid-cols-3 md:px-2 ">
 
           <FormField
             control={form.control}
@@ -136,7 +152,7 @@ export function VisitorForm() {
               <FormItem >
                {/* <FormLabel>Full Name</FormLabel> */}
                 <FormControl className="h-14 rounded-xl ">
-                  <Input placeholder="Full Name"  />
+                  <Input placeholder="Full Name"  {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -150,47 +166,82 @@ export function VisitorForm() {
               <FormItem  >
                 {/* <FormLabel>Phone Number</FormLabel> */}
                 <FormControl className="h-14 rounded-xl ">
-                  <Input placeholder="Phone Number"  />
+                  <Input placeholder="Phone Number"  {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-
-          <FormField
+<FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem  >
                 {/* <FormLabel>Email</FormLabel> */}
                 <FormControl className="h-14 rounded-xl ">
-                  <Input placeholder="Email"  />
+                  <Input placeholder="Email"  {...field}/>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+<FormField
+            control={form.control}
+            name="gender"
+            render={({ field }) => (
+              <FormItem >
+                {/* <FormLabel>Gender</FormLabel> */}
+                <FormControl className="h-14 rounded-xl " >
+                  {/* <Input placeholder="Gender"  {...field}/> */}
+                  <Select
+                  
+                          // onValueChange={(value: string) =>
+                          //   setMarriageDate(addDays(new Date(), parseInt(value))
+                          //   )}
+                          
+                        >
+                          <SelectTrigger className="h-14 rounded-xl">
+                            <SelectValue placeholder="Gender"  {...field}/>
+                          </SelectTrigger>
+                          <SelectContent position="popper">
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                          </SelectContent>
+                   </Select>       
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <FormField
+<FormField
             control={form.control}
-            name="is_member"
+            name="nationality"
             render={({ field }) => (
-              <FormItem className="flex items-center h-full">
-                <div>
-                <FormLabel className="mr-3 ml-6">Member</FormLabel>
-                <FormControl className="h-4 w-4" >
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-
-                  />
-                </FormControl></div>
+              <FormItem >
+                {/* <FormLabel>Nationality</FormLabel> */}
+                <FormControl className="h-14 rounded-xl ">
+                <Select
+                  
+                  // onValueChange={(value: string) =>
+                  //   setMarriageDate(addDays(new Date(), parseInt(value))
+                  //   )}
+                   {...field} 
+                >
+                  <SelectTrigger className="h-14 rounded-xl ">
+                    <SelectValue placeholder="Nationality"/>
+                  </SelectTrigger>
+                  <SelectContent position="popper" className="h-36">
+                    {nationalities.map((nationality,index)=>(<SelectItem value={nationality}  >{nationality}</SelectItem>))}
+                  </SelectContent>
+           </Select>       
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <FormField
+<FormField
             control={form.control}
             name="tribe"
             render={({ field }) => (
@@ -205,7 +256,7 @@ export function VisitorForm() {
                   
                 >
                   <SelectTrigger className="h-14 rounded-xl ">
-                    <SelectValue placeholder="Tribe"  />
+                    <SelectValue placeholder="Tribe"  {...field}/>
                   </SelectTrigger>
                   <SelectContent position="popper" className="h-36">
                     {tribes.map((tribe,index)=>(<SelectItem value={tribe}  >{tribe}</SelectItem>))}
@@ -216,6 +267,29 @@ export function VisitorForm() {
               </FormItem>
             )}
           />
+          
+          
+
+          <FormField
+            control={form.control}
+            name="is_member"
+            render={({ field }) => (
+              <FormItem className="flex items-center h-full">
+                <div>
+                <FormLabel className="ml-6 mr-3">Member</FormLabel>
+                <FormControl className="w-4 h-4" >
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+
+                  />
+                </FormControl></div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+        
 
           <FormField
             control={form.control}
@@ -231,61 +305,8 @@ export function VisitorForm() {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="nationality"
-            render={({ field }) => (
-              <FormItem >
-                {/* <FormLabel>Nationality</FormLabel> */}
-                <FormControl className="h-14 rounded-xl ">
-                <Select
-                  
-                  // onValueChange={(value: string) =>
-                  //   setMarriageDate(addDays(new Date(), parseInt(value))
-                  //   )}
-                  
-                >
-                  <SelectTrigger className="h-14 rounded-xl ">
-                    <SelectValue placeholder="Nationality"  />
-                  </SelectTrigger>
-                  <SelectContent position="popper" className="h-36">
-                    {nationalities.map((nationality,index)=>(<SelectItem value={nationality}  >{nationality}</SelectItem>))}
-                  </SelectContent>
-           </Select>       
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="gender"
-            render={({ field }) => (
-              <FormItem >
-                {/* <FormLabel>Gender</FormLabel> */}
-                <FormControl className="h-14 rounded-xl " >
-                  {/* <Input placeholder="Gender"  /> */}
-                  <Select
-                  
-                          // onValueChange={(value: string) =>
-                          //   setMarriageDate(addDays(new Date(), parseInt(value))
-                          //   )}
-                          
-                        >
-                          <SelectTrigger className="h-14 rounded-xl">
-                            <SelectValue placeholder="Gender"  />
-                          </SelectTrigger>
-                          <SelectContent position="popper">
-                            <SelectItem value="male">Male</SelectItem>
-                            <SelectItem value="female">Female</SelectItem>
-                          </SelectContent>
-                   </Select>       
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+       
+     
 
           <FormField
             control={form.control}
@@ -302,11 +323,11 @@ export function VisitorForm() {
                         !field.value && "text-muted-foreground"
                       )}
                     >
-                      <CalendarIcon className="mr-2 h-4 w-4" /> <span className="font-bold mr-3">Date of Visit : </span>  
+                      <CalendarIcon className="w-4 h-4 mr-2" /> <span className="mr-3 font-bold">Date of Visit : </span>  
                       {dateOfVisit ? format(dateOfVisit, "PPP") : <span>Pick a dateOfVisit</span>}
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="flex w-auto flex-col space-y-2 p-2">
+                  <PopoverContent className="flex flex-col w-auto p-2 space-y-2">
                     <Select
                       onValueChange={(value: string) =>
                         setDateOfVisit(addDays(new Date(), parseInt(value)))
@@ -321,7 +342,7 @@ export function VisitorForm() {
                         <SelectItem value="-7">Last week</SelectItem>
                       </SelectContent>
                     </Select>
-                    <div className="rounded-md border">
+                    <div className="border rounded-md">
                       <Calendar
                         mode="single" selected={dateOfVisit} onSelect={(value: Date | undefined) => {
                           if (value) {
@@ -346,7 +367,7 @@ export function VisitorForm() {
               name="is_married"
               render={({ field }) => (
                 <FormItem className="">
-                  <FormLabel className="mr-3 ml-6">Married</FormLabel>
+                  <FormLabel className="ml-6 mr-3">Married</FormLabel>
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -379,11 +400,11 @@ export function VisitorForm() {
                             !field.value && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" /><span className="font-bold mr-3">Marriage Date : </span>  
+                          <CalendarIcon className="w-4 h-4 mr-2" /><span className="mr-3 font-bold">Marriage Date : </span>  
                           {marriageDate ? format(marriageDate, "PPP") : <span>Pick a date</span>}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="flex w-auto flex-col space-y-2 p-2">
+                      <PopoverContent className="flex flex-col w-auto p-2 space-y-2">
                         <Select
                           onValueChange={(value: string) =>
                             setMarriageDate(addDays(new Date(), parseInt(value))
@@ -398,7 +419,7 @@ export function VisitorForm() {
                             <SelectItem value="-7">Last week</SelectItem>
                           </SelectContent>
                         </Select>
-                        <div className="rounded-md border">
+                        <div className="border rounded-md">
                           <Calendar
                             mode="single"
                             selected={marriageDate}
@@ -426,8 +447,7 @@ export function VisitorForm() {
               name="is_baptized"
               render={({ field }) => (
                 <FormItem className="">
-                  <FormLabel className="mr-3 ml-6 my-
-                  ">Baptized</FormLabel>
+                  <FormLabel className="ml-6 mr-3 my- ">Baptized</FormLabel>
                   <FormControl>
                     <FormControl>
                       <Checkbox
@@ -457,11 +477,11 @@ export function VisitorForm() {
                             !field.value && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" /><span className="font-bold mr-3">Baptism Date : </span>  
+                          <CalendarIcon className="w-4 h-4 mr-2" /><span className="mr-3 font-bold">Baptism Date : </span>  
                           {baptismDate ? format(baptismDate, "PPP") : <span>Pick a date</span>}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="flex w-auto flex-col space-y-2 p-2">
+                      <PopoverContent className="flex flex-col w-auto p-2 space-y-2">
                         <Select
                           onValueChange={(value: string) =>
                             setBaptismDate(addDays(new Date(), parseInt(value))
@@ -476,7 +496,7 @@ export function VisitorForm() {
                             <SelectItem value="-7">Last week</SelectItem>
                           </SelectContent>
                         </Select>
-                        <div className="rounded-md border">
+                        <div className="border rounded-md">
                           <Calendar
                             mode="single"
                             selected={baptismDate}
@@ -503,7 +523,7 @@ export function VisitorForm() {
               name="is_born_again"
               render={({ field }) => (
                 <FormItem className="">
-                  <FormLabel className="mr-3 ml-6" >Born Again</FormLabel>
+                  <FormLabel className="ml-6 mr-3" >Born Again</FormLabel>
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -531,11 +551,11 @@ export function VisitorForm() {
                             !field.value && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" /><span className="font-bold mr-3">Born Again Date : </span>  
+                          <CalendarIcon className="w-4 h-4 mr-2" /><span className="mr-3 font-bold">Born Again Date : </span>  
                           {bornAgainDate ? format(bornAgainDate, "PPP") : <span>Pick a date</span>}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="flex w-auto flex-col space-y-2 p-2">
+                      <PopoverContent className="flex flex-col w-auto p-2 space-y-2">
                         <Select
                           onValueChange={(value: string) =>
                             setBornAgainDate(addDays(new Date(), parseInt(value))
@@ -550,7 +570,7 @@ export function VisitorForm() {
                             <SelectItem value="-7">Last week</SelectItem>
                           </SelectContent>
                         </Select>
-                        <div className="rounded-md border">
+                        <div className="border rounded-md">
                           <Calendar
                             mode="single"
                             selected={bornAgainDate}
@@ -574,18 +594,22 @@ export function VisitorForm() {
 
 
         </div>
-        <div className="flex flex-col md:flex-row md:gap-9 gap-2 md:justify-center md:w-full items-center p-6">
-          <Button type="submit" className={cn("w-1/4 ")}>
-            Register
-          </Button>
-
-          <Button variant="ghost"className={cn("w-1/4  text-center ")}><Link href="/auth/sign-in" >Cancel</Link></Button>
-
-        </div>
+     
       </form>
 
     </Form>
 
+    </CardContent>
+      <CardFooter className="flex justify-between">
+      <div className="flex flex-col items-center gap-2 p-6 md:flex-row md:gap-9 md:justify-center md:w-full">
+          <Button type="submit" className={cn("w-1/4 ")}>
+            Register
+          </Button>
 
+          <Button variant="outline"className={cn("w-1/4  text-center ")}><Link href="/auth/sign-in" >Cancel</Link></Button>
+
+        </div>
+      </CardFooter>
+    </Card>
   );
 }

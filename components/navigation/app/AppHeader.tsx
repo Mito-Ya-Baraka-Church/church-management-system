@@ -7,14 +7,15 @@ import { Icons } from "@/components/misc/icons"
 import { ProfileIcon } from "@/components/misc/profile-icon"
 import { ThemeToggle } from "@/components/misc/theme-toggle"
 import { MainNav } from "@/components/navigation/main-nav"
+import Image from 'next/image'
 
 export function AppHeader() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="flex h-16 items-center justify-between space-x-4 sm:space-x-0">
+      <div className="flex items-center justify-between h-16 space-x-4 sm:space-x-0">
         {/* Desktop */}
 
-        <div className="hidden w-full items-center justify-between px-4 md:flex">
+        <div className="items-center justify-between hidden w-full px-4 md:flex">
           <div className="flex items-center space-x-2">
             <AdvancedLink
               href="/"
@@ -22,10 +23,17 @@ export function AppHeader() {
               analyticsValue="clicked_logo"
               analyticsProperties={{ location: "header" }}
             >
-              <Icons.logo className="h-6 w-6" />
+              {/* <Icons.logo className="w-6 h-6" /> */}
+              <Image
+                src="/public/"
+                width={500}
+                height={500}
+                alt="Picture of the author"
+              />
+
             </AdvancedLink>
 
-            <span className="hidden items-end font-bold md:flex  ">
+            <span className="items-end hidden font-bold md:flex ">
               {siteConfig.name}
             </span>
           </div>
@@ -51,7 +59,7 @@ export function AppHeader() {
                   variant: "ghost",
                 })}
               >
-                <Icons.gitHub className="h-5 w-5" />
+                <Icons.gitHub className="w-5 h-5" />
                 <span className="sr-only">GitHub</span>
               </div>
             </AdvancedLink>
@@ -71,7 +79,7 @@ export function AppHeader() {
                   variant: "ghost",
                 })}
               >
-                <Icons.twitter className="h-5 w-5 fill-current" />
+                <Icons.twitter className="w-5 h-5 fill-current" />
                 <span className="sr-only">Twitter</span>
               </div>
             </AdvancedLink> */}
@@ -82,7 +90,7 @@ export function AppHeader() {
 
         {/* Mobile */}
 
-        <div className="flex w-full items-center justify-between px-4 md:hidden">
+        <div className="flex items-center justify-between w-full px-4 md:hidden">
           <div className="flex items-center space-x-2">
             <MainNav items={siteConfig.mainNav} />
           </div>
@@ -94,7 +102,7 @@ export function AppHeader() {
               analyticsValue="clicked_logo"
               analyticsProperties={{ location: "header" }}
             >
-              <Icons.logo className="h-6 w-6" />
+              <Icons.logo className="w-6 h-6" />
             </AdvancedLink>
           </div>
 
