@@ -2,25 +2,26 @@
 module.exports = {
   endOfLine: "lf",
   semi: false,
-  singleQuote: false,
+  useTabs: false,
+  singleQuote: true,
+  arrowParens: "avoid",
   tabWidth: 2,
-  trailingComma: "es5",
+  trailingComma: "none",
   importOrder: [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "",
-    "^types$",
     "^@/types/(.*)$",
-    "^@/env(.*)$",
     "^@/config/(.*)$",
     "^@/lib/(.*)$",
     "^@/hooks/(.*)$",
-    "^@/helpers/(.*)$",
     "^@/components/ui/(.*)$",
     "^@/components/(.*)$",
+    "^@/registry/(.*)$",
     "^@/styles/(.*)$",
     "^@/app/(.*)$",
+    "^@/actions/(.*)$",
     "",
     "^[./]",
   ],
@@ -30,8 +31,4 @@ module.exports = {
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
   importOrderMergeDuplicateImports: true,
   importOrderCombineTypeAndValueImports: true,
-  plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
-    // "prettier-plugin-tailwindcss", // for some reason enabling this disabled prettier formatting
-  ],
-}
+};

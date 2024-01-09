@@ -40,9 +40,11 @@ import { Calendar as CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 
 
+const GenderEnum = z.enum(["male", "female"]);
 
 const visitorFormSchema = z.object({
-  full_name: z.string().min(1, "Full name is required"),
+  first_name: z.string().min(1, "First name is required"),
+  last_name: z.string().min(1, "Last name is required"),
   day_of_visit: z.date(),
   phone_number: z.string().min(1, "Phone number is required"),
   email: z.string().email("Invalid email format"),
@@ -67,18 +69,18 @@ const visitorFormSchema = z.object({
     message: "Born again date is required if born again",
   }),
 
-  is_member: z.boolean(),
   tribe: z.string().min(1, "Tribe is required"),
   location_name: z.string().min(1, "Location name is required"),
   nationality: z.string().min(1, "Nationality is required"),
-  gender: z.string().min(1, "Gender is required"),
+    gender: GenderEnum, 
 });
 
 type AccountFormValues = z.infer<typeof visitorFormSchema>;
 
 // This can come from your database or API.
 const defaultValues: Partial<AccountFormValues> = {
-  full_name: "Visitor 3",
+  first_name: "Inno",
+  last_name: "Lupamba",
   day_of_visit: new Date("2023-11-01"),
   phone_number: "2342342",
   email: "34adf@adsfa.com",
@@ -88,11 +90,10 @@ const defaultValues: Partial<AccountFormValues> = {
   baptism_date: new Date("2023-11-01T12:00:00"),
   is_born_again: true,
   born_again_date: new Date("2023-11-01T12:00:00"),
-  is_member: true,
   tribe: "asdfas",
   location_name: "asdfasf",
   nationality: "asdfasdf",
-  gender: "male",
+  gender: "male"
 };
 
 export function VisitorForm() {
@@ -115,21 +116,16 @@ export function VisitorForm() {
   };
 
   return (
-
- 
-
-
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* using grid show 3 cols on desktop and 2 on tablet 1 on mbile */}
-        <div className="px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:px-2">
-
-        <FormField
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 px-8 md:px-2">
+           <FormField
           control={form.control}
-          name="full_name"
+          name="first_name"
           render={({ field }) => (
             <FormItem >
-              <FormLabel>Full Name</FormLabel>
+              <FormLabel>First Name</FormLabel>
               <FormControl>
                 <Input placeholder="Visitor 3" {...field} />
               </FormControl>
@@ -137,6 +133,21 @@ export function VisitorForm() {
             </FormItem>
           )}
         />
+           <FormField
+          control={form.control}
+          name="last_name"
+          render={({ field }) => (
+            <FormItem >
+              <FormLabel>Last Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Visitor 3" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
    
         <FormField
           control={form.control}
@@ -166,22 +177,6 @@ export function VisitorForm() {
           )}
         />
        
-<FormField
-          control={form.control}
-          name="is_member"
-          render={({ field }) => (
-            <FormItem >
-              <FormLabel>Member</FormLabel>
-              <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
 
         <FormField
           control={form.control}
@@ -225,15 +220,24 @@ export function VisitorForm() {
           )}
         />
 
-        <FormField
+      <FormField
           control={form.control}
           name="gender"
           render={({ field }) => (
-            <FormItem >
+            <FormItem>
               <FormLabel>Gender</FormLabel>
-              <FormControl>
-                <Input placeholder="male" {...field} />
-              </FormControl>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a verified email to display" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="male">Male</SelectItem>
+                  <SelectItem value="female">Female</SelectItem>
+              
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
@@ -284,9 +288,7 @@ export function VisitorForm() {
         </div>
       </PopoverContent>
     </Popover>
-                <FormDescription>
-                  Date of visit must be in the past 10 days or today
-                </FormDescription>
+               
                 <FormMessage />
               </FormItem>
           )}
@@ -297,8 +299,8 @@ export function VisitorForm() {
           control={form.control}
           name="is_married"
           render={({ field }) => (
-            <FormItem >
-              <FormLabel>Married</FormLabel>
+            <FormItem >  
+              <FormLabel className="mr-4 mb-1">Married</FormLabel>
               <FormControl>
                 <Checkbox
                   checked={field.value}
@@ -378,12 +380,13 @@ export function VisitorForm() {
           name="is_baptized"
           render={({ field }) => (
             <FormItem >
-              <FormLabel>Baptized</FormLabel>
+              <FormLabel className="mr-4 mb-1">Baptized</FormLabel>
               <FormControl>
                 <FormControl>
                 <Checkbox
                   checked={field.value}
                   onCheckedChange={field.onChange}
+                 
                 />
                 </FormControl>
               </FormControl>
@@ -454,7 +457,7 @@ export function VisitorForm() {
           name="is_born_again"
           render={({ field }) => (
             <FormItem >
-              <FormLabel>Born Again</FormLabel>
+              <FormLabel className="mr-4 mb-1">Born Again</FormLabel>
               <FormControl>
                 <Checkbox
                   checked={field.value}

@@ -10,7 +10,7 @@ export function CustomPostHogProvider({ children }: any) {
       api_host: process.env.NEXT_PUBLIC_HOST_URL || "https://app.posthog.com",
       // Enable debug mode in development
       loaded: (posthog) => {
-        if (process.env.NODE_ENV === "development") posthog.debug()
+        if (process.env.NEXT_PUBLIC_VERCEL_ENV === "development") posthog.debug()
         // console.log("PostHog debug enabled")
       },
       capture_pageview: true,

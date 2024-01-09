@@ -79,5 +79,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate", "eslint-plugin-tailwindcss")],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')]
 }

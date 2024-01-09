@@ -37,10 +37,7 @@ export const metadata: Metadata = {
     },
   ],
   creator: `${siteConfig.author ? siteConfig.author : "@fredygerman_"}`,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+ 
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -63,6 +60,13 @@ export const metadata: Metadata = {
   },
   manifest: `${siteConfig.links.home}/site.webmanifest`,
 }
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+};
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (

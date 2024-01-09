@@ -13,7 +13,7 @@ export const env = createEnv({
   client: {
     // App
     NEXT_PUBLIC_APP_URL: z.string(),
-    NODE_ENV: z.string().optional(),
+    NEXT_PUBLIC_VERCEL_ENV: z.string().optional(),
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
@@ -22,7 +22,7 @@ export const env = createEnv({
   runtimeEnv: {
     // App
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
-    NODE_ENV: process.env.NODE_ENV,
+    NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
 
     DIRECTUS_URL: process.env.DIRECTUS_URL,
     DIRECTUS_TOKEN_EXPIRATION_ADJUSTMENT:

@@ -3,17 +3,13 @@
 import { useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { login } from "@/actions/authForms"
 import { logoutUser, setAuthState, storedUser } from "@/store/slices/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { format } from "date-fns"
-import { usePostHog } from "posthog-js/react"
-import { useDirectus } from "react-directus"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
 import { cn } from "@/lib/utils"
-import { useStoreDispatch, useStoreSelector } from "@/hooks/useStore"
+import { useStoreDispatch } from "@/hooks/useStore"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -26,6 +22,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
+import { createSupabaseBrowserClient } from "@/lib/supabase/browser-client"
 
 const accountFormSchema = z.object({
   email: z.string().email({
@@ -43,62 +40,61 @@ const accountFormSchema = z.object({
 
 type AccountFormValues = z.infer<typeof accountFormSchema>
 
-// This can come from your database or API.
-const defaultValues: Partial<AccountFormValues> = {
-  // name: "Your name",
-  // dob: new Date("2023-01-23"),
-}
+
 
 export function LoginAuthForm() {
   const dispatch = useStoreDispatch()
-  // check if there is a localStorage logged-out item, tell user they have been logged out and remove the item
-  if (typeof window !== "undefined") {
-    if (localStorage.getItem("logged-out")) {
+// Get the URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+
+// Check if the 'logged-out' parameter is present and its value is 'true'
+if (urlParams.get('logged-out') === 'true') {
       dispatch(logoutUser())
       toast({
-        title: "Oh no! Your Session Expired.",
+        title: "Oh no! You have been logged out.",
         description: "Please log in again.",
         variant: "destructive",
       })
-      localStorage.removeItem("logged-out")
-    }
   }
-  const posthog = usePostHog()
+  const supabase = createSupabaseBrowserClient();
+
+  
 
   const router = useRouter()
-  let user = useStoreSelector(storedUser)
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
-    defaultValues,
   })
 
-  const onSubmit = async (data: AccountFormValues) => {
-    const { email, password } = data
+  const onSubmit = async (formData: AccountFormValues) => {
+    const { email, password } = formData
+    const { error, data } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
-    const loginResult = await login(email, password)
-    // console.log("login result :", loginResult)
-
+  if (error) {
     toast({
-      title: loginResult.success ? "Success 🥳 " : "Error 🫤",
-      variant: loginResult.success ? "default" : "destructive",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-background p-4">
-          <code className="text-primary">{loginResult.message}</code>
-        </pre>
-      ),
+      title: "Error",
+      description: error.message,
+      variant: "destructive",
+    })
+  }
+
+  if (data) {
+    toast({
+      title: "Success",
+      description: "Logged in successfully",
     })
 
-    if (loginResult.success) {
-      dispatch(setAuthState(loginResult.data))
-      posthog?.identify(loginResult.data.user.id, {
-        email: loginResult.data.user.email,
-      })
-      posthog?.group("role", loginResult.data.user.role)
-      posthog?.capture("user_log_in")
-      // await 2 seconds to allow the auth state to be set
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      router.push("/")
-    }
+    const redirectUrl = urlParams.get('redirect');
+    if (redirectUrl) {
+    router.push(redirectUrl);
+  }
+  else {
+    router.push("/")
+  }
+  }
+    
   }
 
   return (
