@@ -6,7 +6,7 @@ module.exports = {
       {
         protocol: "https",
         hostname: "**.githubusercontent.com",
-        // hostname: `${process.env.NEXT_PUBLIC_SUPABASE_IMAGE_HOSTNAME}`,
+        hostname: `${process.env.NEXT_PUBLIC_SUPABASE_IMAGE_HOSTNAME}`,
       },
     ],
   },

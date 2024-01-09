@@ -1,109 +1,79 @@
-import Link from "next/link"
+import * as React from "react";
+import Link from "next/link";
 
-import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
-import { AdvancedLink } from "@/components/advanced/advanced-link"
-import { Icons } from "@/components/misc/icons"
-import { ProfileIcon } from "@/components/misc/profile-icon"
-import { ThemeToggle } from "@/components/misc/theme-toggle"
-import { MainNav } from "@/components/navigation/main-nav"
+import { cn } from "@/lib/utils";
+import { auth } from "@/auth";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Sidebar } from "@/components/sidebar";
+import {  IconGitHub } from "@/components/ui/icons";
+import { SidebarFooter } from "@/components/sidebar-footer";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { UserMenu } from "@/components/user-menu";
+import { cookies } from "next/headers";
+import { siteConfig } from "@/config/site";
+import { MainNav } from "@/components/navigation/main-nav";
+import { Icons } from "@/components/misc/icons";
+import { MobileMenu } from "@/components/navigation/app/mobile-menu";
+
+async function UserOrLogin() {
+  const cookieStore = cookies();
+  const session = await auth({ cookieStore });
+
+  return (
+    <>
+      <div className="flex items-center">
+        {session?.user ? (
+          <UserMenu user={session.user} />
+        ) : (
+          <Button variant="link" asChild className="-ml-2">
+            <Link href="/sign-in?callbackUrl=/">Login</Link>
+          </Button>
+        )}
+      </div>
+    </>
+  );
+}
 
 export function AppHeader() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="flex h-16 items-center justify-between space-x-4 sm:space-x-0">
-        {/* Desktop */}
+    <header className="sticky top-0 z-50 flex h-16 w-full shrink-0 items-center justify-between border-b bg-gradient-to-b from-background/10 via-background/50 to-background/80 px-4 backdrop-blur-xl">
+      <div className="flex items-center">
+      <MobileMenu/>
+        <Link className="flex items-center justify-center " href="/">
+        <Icons.logo className="h-6 w-6" />
+          <span className="ml-2 hidden text-xl font-bold sm:flex">
+            {siteConfig.name}
+          </span>
+        </Link>
+      </div>
+   
+   
+      <div className="flex items-center justify-end space-x-2">
+      <MainNav items={siteConfig.mainNav} />
+        <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
+          <UserOrLogin />
+        </React.Suspense>
+        {
+          siteConfig.showGitHubBtn && (
+        
+        <a
+          target="_blank"
+          href={`${siteConfig.githubUrl}`}
+          rel="noopener noreferrer"
+          className={cn(buttonVariants({ variant: "outline" }))}
+        >
+          <IconGitHub />
+        </a> )
+        }
 
-        <div className="hidden w-full items-center justify-between px-4 md:flex">
-          <div className="flex items-center space-x-2">
-            <AdvancedLink
-              href="/"
-              className="flex items-center space-x-2"
-              analyticsValue="clicked_logo"
-              analyticsProperties={{ location: "header" }}
-            >
-              <Icons.logo className="h-6 w-6" />
-            </AdvancedLink>
+        <ThemeToggle />
+        <a href="/blur" className={cn(buttonVariants() + " hidden sm:flex")}>
+          <span className="">Get Started</span>
+        </a>
 
-            <span className="hidden items-end font-bold md:flex  ">
-              {siteConfig.name}
-            </span>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <MainNav items={siteConfig.mainNav} />
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <AdvancedLink
-              href={
-                siteConfig.socials.find((social) => social.name === "Github")
-                  ?.url ?? "#"
-              }
-              target="_blank"
-              rel="noreferrer"
-              analyticsValue="clicked_github"
-              analyticsProperties={{ location: "header" }}
-            >
-              <div
-                className={buttonVariants({
-                  size: "icon",
-                  variant: "ghost",
-                })}
-              >
-                <Icons.gitHub className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </div>
-            </AdvancedLink>
-            {/* <AdvancedLink
-              href={
-                siteConfig.socials.find((social) => social.name === "Twitter")
-                  ?.url ?? "#"
-              }
-              target="_blank"
-              rel="noreferrer"
-              analyticsValue="clicked_twitter"
-              analyticsProperties={{ location: "header" }}
-            >
-              <div
-                className={buttonVariants({
-                  size: "icon",
-                  variant: "ghost",
-                })}
-              >
-                <Icons.twitter className="h-5 w-5 fill-current" />
-                <span className="sr-only">Twitter</span>
-              </div>
-            </AdvancedLink> */}
-            <ThemeToggle />
-            <ProfileIcon />
-          </div>
-        </div>
-
-        {/* Mobile */}
-
-        <div className="flex w-full items-center justify-between px-4 md:hidden">
-          <div className="flex items-center space-x-2">
-            <MainNav items={siteConfig.mainNav} />
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <AdvancedLink
-              href="/"
-              className="flex items-center space-x-2"
-              analyticsValue="clicked_logo"
-              analyticsProperties={{ location: "header" }}
-            >
-              <Icons.logo className="h-6 w-6" />
-            </AdvancedLink>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            {" "}
-            <ThemeToggle />
-          </div>
-        </div>
       </div>
     </header>
-  )
+  );
 }
+
+

@@ -2,12 +2,13 @@ import { type NextRequest, type NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getCookie, setCookie } from "cookies-next";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { env } from "@/env.mjs";
 
 // server component can only get cookies and not set them, hence the "component" check
 export function createSupabaseServerClient(component: boolean = false) {
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    env.NEXT_PUBLIC_SUPABASE_URL!,
+    env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         get(name: string) {
@@ -35,8 +36,8 @@ export function createSupabaseReqResClient(
   res: NextResponse
 ) {
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    env.NEXT_PUBLIC_SUPABASE_URL!,
+    env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         get(name: string) {

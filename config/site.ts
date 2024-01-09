@@ -1,48 +1,38 @@
-import getConfig from "next/config"
+import { env } from "@/env.mjs";
+import packageJson from "../package.json";
 
-import { env } from "@/env.mjs"
+export type PackageJson = typeof packageJson;
+export type SiteConfig = typeof siteConfig;
 
-// const { publicRuntimeConfig } = getConfig()
-export type SiteConfig = typeof siteConfig
+const { version } = packageJson;
 
 export const siteConfig = {
-  title: "Next Js Directus Starter",
-  name: "Next-js-directus-starter",
+  title: "Mito Ya Baraka Church Management System",
+  name: " Mito Ya Baraka",
   canonical: "https://nextjs-starter-shadcn.vercel.app/",
   domain: "https://nextjs-starter-shadcn.vercel.app/",
-  // directusUrl: env.DIRECTUS_URL,
   nextUrl: env.NEXT_PUBLIC_APP_URL,
   image:
     "https://storage.googleapis.com/brandflow-bucket/personal/blog/portfolio-og.jpg",
   type: "website",
   twitterHandle: "@fredygerman_",
   description:
-    "Amazing starter with Directus Next.js, TypeScript, ESLint, Prettier, chadcn-ui",
+    "Amazing starter with Supabase Next.js, TypeScript, ESLint, Prettier, chadcn-ui",
   mainNav: [
-    {
-      title: "Home",
-      href: "/",
-    },
-    {
-      title: "About",
-      href: "/about",
-    },
-
     {
       title: "Visitor",
       href: "/visitor",
+      icon: "visitor",
     },
     {
       title: "Member",
       href: "/member",
+      icon: "member",
     },
     {
-      title: "Login",
-      href: "/auth/login",
-    },
-    {
-      title: "Sign In",
-      href: "/auth/sign-in",
+      title: "Dashboard",
+      href: "/dashboard",
+      icon: "dashboard",
     },
   ],
   links: {
@@ -98,9 +88,10 @@ export const siteConfig = {
       asset: "/phone.svg",
     },
   ],
-  // version: publicRuntimeConfig?.version || "unknown",
-  version: "0.0.1",
-  author: "fredygerman", // make sure this is also your github username
+  showGitHubBtn: false,
+  githubUrl: "https://github.com/fredygerman",
+  version: version,
+  author: "fredygerman",
   authorUrl: "https://github.com/fredygerman",
-  gitHubApiRepoName: "fredygerman/next-js-directus-starter",
-}
+  gitHubApiRepoName: "fredygerman/next-js-supabase-starter",
+};

@@ -1,81 +1,69 @@
-# Next js Directus Starter
+<a href="">
+  <img alt="Next.js 14" src="https:/vercel.ai/opengraph-image.png" />
+  <h1 align="center">Next.js AI Face Blur </h1>
+</a>
 
-Next.js 13 starter for building apps with Directus CMS Radix UI and Tailwind CSS.
+<p align="center">
+  An open-source AI Face Blur app built with <a href="https://nextjs.org">Next.js</a> and <a href="https://supabase.com">Supabase</a>.
+</p>
 
-## Usage
+<br/>
 
-```bash
-git clone https://github.com/fredygerman/next-js-directus-starter.git
-```
+## Features
 
-### Change directory
+- [Next.js 14](https://nextjs.org) App Router
+- React Server Components (RSCs), Suspense, and Server Actions
+- [Supabase](https://supabase.com) for authentication and data storage
 
-```bash
-cd next-js-directus-starter
-```
+### Configure your site url
 
-### Install Dependencies
+In the Supabase Dashboard, navigate to [Auth > URL configuration](https://app.supabase.com/project/_/auth/url-configuration) and set your Vercel URL as the site URL.
 
-```bash
-pnpm install
-```
+## Running locally
 
-### Start Directus CMS
+You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js Face Blur AI . It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
 
-Make sure your Directus CMS is running and you have created a project.
+> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control access to your various OpenAI and authentication provider accounts.
 
-### Define Environment Variables
+Copy the `.env.example` file and populate the required env vars:
 
 ```bash
 cp .env.example .env
 ```
 
-Note : Make sure all the environment variables are defined in your .env file.
-
-For the DIRECTUS_DEFAULT_ROLE_ID you can use the default role id from your directus project.
-For DIRECTUS_USER_CREATOR_TOKEN you need to create a user and a static token in your directus project.
-
-### Start the development server
+[Install the Supabase CLI](https://supabase.com/docs/guides/cli) and start the local Supabase stack:
 
 ```bash
-pnpm run dev
+npm install supabase --save-dev
+npx supabase start
 ```
 
-### You can now view the app in your browser at http://localhost:3000 🚀
+Install the local dependencies and start dev mode:
 
-## Features
+```bash
+pnpm install
+pnpm dev
+```
 
-- Next.js 13 App Directory
-- Directus CMS
-- Radix UI Primitives
-- Tailwind CSS
-- Icons from [Lucide](https://lucide.dev)
-- Themes with next-themes and Tailwind CSS
-- Tailwind CSS class sorting, merging and linting.
-- Next js Server Side Components (SSC) & Client Side Components (CSC)
-- Next js Form Actions
-- Analytics with Posthog
+<!-- you can add types from project by running pnpm run update-types -->
 
-## Roadmap
+You can update the types from the project by running:
 
-- [✅] Add Login and Register
-- [✅] Add Analytics
-- [ ] Add Installation Instructions Documentation
-- [ ] Add Dashboard Page
-- [ ] Add Simple Blog
-- [ ] Add SEO
-- [ ] Add Auth Guard
-- [ ] Add Password Reset and Forgot Password
-- [ ] Add User Profile
-- [ ] Add User Settings
+```bash
+pnpm run update-types
+```
 
-## Customizations and configurations.
+Your app template should now be running on [localhost:3000](http://localhost:3000/).
 
-- Site Config (site.ts) for Site Information configuration (i.e Name, Title, Nav Bar items, Links etc).
-- Response Messages Config (messages.ts) for Creating user friendly response messages.
-- [@t3-oss/env-nextjs](https://create.t3.gg/en/usage/env-variables) For Environment Variables configuration. (env.mjs)
-- and other config files. (tailwind.config.js, postcss.config.js, next.config, prettier.config.js)
+## Authors
 
-## License
+This Project was built by DTC members and contributors:
 
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
+- [Fredy German](https://twitter.com/fredygermanm)
+- etc.
+
+## Credits
+
+Images from [Unsplash](https://unsplash.com/) and [Dall-E](https://labs.openai.com/).
+
+<!-- https://unsplash.com/photos/selective-focus-photography-of-man-in-gray-crew-neck-shirt-Ve7xjKImd28 -->

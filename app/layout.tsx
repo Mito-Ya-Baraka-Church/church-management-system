@@ -1,65 +1,26 @@
-import "@/styles/globals.css"
-import { Metadata } from "next"
+import { Toaster } from "react-hot-toast";
+import { fontMono, fontSans } from "@/lib/fonts";
 
-import { RootLayoutProps } from "@/types/general"
-import { siteConfig } from "@/config/site"
-import { fontSans } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
-import { CustomPostHogProvider } from "@/components/misc/posthog-provider"
-import { ProgressBar } from "@/components/misc/progress"
-import CustomProvider from "@/components/misc/state-provider"
-// import Seo from "@/components/misc/seo"
-import { TailwindIndicator } from "@/components/misc/tailwind-indicator"
-import { ToasterWrapper } from "@/components/misc/toaster-wrapper"
+import "@/app/globals.css";
+import { cn } from "@/lib/utils";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { Providers } from "@/components/providers";
+import { siteConfig } from "@/config/site";
+import EnvironmentBanner from "@/components/misc/environment-banner";
 
-export const metadata: Metadata = {
+export const metadata = {
+  metadataBase: new URL(`https://${process.env.NEXT_PUBLIC_VERCEL_URL}`),
   title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    default: `${siteConfig.title} `,
+    template: `%s | ${siteConfig.title}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Server Components",
-    "Radix UI",
-    "TypeScript",
-    "Directus",
-    "Headless CMS",
-  ],
-  authors: [
-    {
-      name: `${siteConfig.author ? siteConfig.author : "@fredygerman_"}`,
-      url: `${
-        siteConfig.authorUrl ? siteConfig.authorUrl : "https://fredygerman.com"
-      }`,
-    },
-  ],
-  creator: `${siteConfig.author ? siteConfig.author : "@fredygerman_"}`,
- 
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.links.home,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [`${siteConfig.links.home}/og.jpg`],
-    creator: `${siteConfig.author ? siteConfig.author : "@fredygerman_"}`,
-  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: `${siteConfig.links.home}/site.webmanifest`,
-}
+};
 
 export const viewport = {
   themeColor: [
@@ -68,31 +29,48 @@ export const viewport = {
   ],
 };
 
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
+    <html lang="en" suppressHydrationWarning>
+      {process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ? (
+        <script
+          async
+          src="https://analytics.eu.umami.is/script.js"
+          data-website-id={`${process.env.UMAMI_ANALYTICS_ID}`}
+        />
+      ) : null}
+      <head />
+      <body
+        className={cn(
+          "font-sans antialiased",
+          fontSans.variable,
+          fontMono.variable
+        )}
+      >
+        <EnvironmentBanner />
+        <Toaster />
+        <Providers
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          {/* <Seo> */}
-          <ProgressBar />
-          <CustomPostHogProvider>
-            <CustomProvider>
-              <div className="relative flex min-h-screen flex-col">
-                {children}
-              </div>
-            </CustomProvider>
-          </CustomPostHogProvider>
-          <ToasterWrapper />
+          <div
+            className={cn(
+              "min-h-screen bg-muted/50 font-sans antialiased",
+              fontSans.variable
+            )}
+          >
+            {children}
+          </div>
+
           <TailwindIndicator />
-          {/* </Seo> */}
-        </body>
-      </html>
-    </>
-  )
+        </Providers>
+      </body>
+    </html>
+  );
 }
