@@ -20,14 +20,9 @@ export const siteConfig = {
     "Amazing starter with Supabase Next.js, TypeScript, ESLint, Prettier, chadcn-ui",
   mainNav: [
     {
-      title: "Visitor",
-      href: "/visitor",
-      icon: "visitor",
-    },
-    {
-      title: "Member",
-      href: "/member",
-      icon: "member",
+      title: "Register",
+      href: "/register",
+      icon: "register",
     },
     {
       title: "Dashboard",

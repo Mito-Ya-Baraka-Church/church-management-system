@@ -540,15 +540,18 @@ export function VisitorForm() {
             )}
           </div>
         </div>
-        <div className="my-6 flex w-full flex-row items-center justify-center gap-4 space-x-2">
+        <div className="my-6 flex w-full flex-row items-center justify-center gap-4 space-x-2 px-4">
           <Button type="submit" className={cn("w-1/2 ")}>
             Register
           </Button>
-          <Link href="/auth/sign-in" className={cn("w-1/2 text-center ")}>
-            <Button variant="ghost" className={cn("w-full ")}>
-              Cancel
-            </Button>
-          </Link>
+
+          <Button
+            variant="ghost"
+            className={cn("w-1/2 ")}
+            onClick={() => form.reset()}
+          >
+            Cancel
+          </Button>
         </div>
       </form>
     </Form>
