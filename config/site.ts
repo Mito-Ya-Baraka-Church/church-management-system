@@ -62,19 +62,33 @@ export const siteConfig = {
       icon: "settings",
     },
   ],
-  links: {
-    home: "/",
-    about: "/about",
-    blog: "/blog",
-    login: "/auth/login",
-    signup: "/auth/signup",
-    contact: "/contact",
-    privacyPolicy: "/privacy-policy",
-    termsAndConditions: "/terms-and-conditions",
-    dashboard: "/dashboard",
-    admin: "/admin",
-    adminDashboard: "/admin/dashboard",
-  },
+  footerNav: [
+    {
+      title: "Privacy Policy",
+      href: "/privacy-policy",
+      icon: "privacy-policy",
+    },
+    {
+      title: "Terms of Service",
+      href: "/terms-and-conditions",
+      icon: "terms-and-conditions",
+    },
+    {
+      title: "Contact",
+      href: "/contact",
+      icon: "contact",
+    },
+  ],
+  // please don't remove this array, it's used for the auth middleware
+  // please don't add "/" to this array, it's already added in the middleware
+  additionalPublicPages: [
+    "/about",
+    "/blog",
+    "/blogs",
+    "/contact",
+    "/privacy-policy",
+    "/terms-and-conditions",
+  ],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",

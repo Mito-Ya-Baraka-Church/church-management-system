@@ -10,6 +10,7 @@ import { Label } from "../ui/label";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { redirect, useRouter } from "next/navigation";
+import { convertPathToName } from "@/lib/utils";
 
 interface LoginFormProps extends React.ComponentPropsWithoutRef<"div"> {
   action: "sign-in" | "sign-up";
@@ -24,6 +25,7 @@ export function LoginForm({
   const router = useRouter();
   // Create a Supabase client configured to use cookies
   const supabase = createClientComponentClient();
+  const [redirectUrl, setRedirectUrl] = React.useState<string | null>(null);
 
   const [formState, setFormState] = React.useState<{
     email: string;
@@ -32,15 +34,32 @@ export function LoginForm({
     email: "",
     password: "",
   });
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = React.useMemo(
+    () => new URLSearchParams(window.location.search),
+    [location.search]
+  );
 
-  function getRedirectUrl(): string | null {
-    const redirectUrl = urlParams.get("redirect");
+  const getRedirectUrl = React.useCallback((): string | null => {
+    const redirectUrl = urlParams.get("redirectedFrom");
     if (redirectUrl) {
       return redirectUrl;
     }
     return null;
-  }
+  }, [urlParams]);
+
+  React.useEffect(() => {
+    const redirectUrl = getRedirectUrl();
+    if (redirectUrl !== null) {
+      const redirectUrl = getRedirectUrl();
+
+      toast.error(
+        `Oh no! You need to login to access the ${convertPathToName(
+          redirectUrl + " Page" ?? " page you were trying to access"
+        )}`
+      );
+    }
+  }, [getRedirectUrl, urlParams]);
+
   const signIn = async () => {
     const { email, password } = formState;
     const { error, data } = await supabase.auth.signInWithPassword({
@@ -82,7 +101,7 @@ export function LoginForm({
     setIsLoading(false);
     const redirectUrl = getRedirectUrl();
     if (redirectUrl !== null) {
-      router.push(redirectUrl + "?logged-in=true");
+      router.push(redirectUrl + "?just-logged-in=true");
       router.refresh();
     } else {
       router.push("/");

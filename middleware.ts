@@ -2,7 +2,8 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
 
 import type { NextRequest } from "next/server";
-
+import { siteConfig } from "./config/site";
+const { additionalPublicPages } = siteConfig;
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
@@ -14,16 +15,30 @@ export async function middleware(req: NextRequest) {
   const {
     data: { session },
   } = await supabase.auth.getSession();
+  const pathname = req.nextUrl.pathname;
 
-  // OPTIONAL: this forces users to be logged in to use the blurPage.
+  // OPTIONAL: this forces users to be logged in to use the app
+  // unless they are on a public pages array.
   // If you want to allow anonymous users, simply remove the check below.
+  // please don't add "/" to this array, it's already added in the if statement
+
+  // homepage is always public , but we can add more public pages
+  const publicPages = [
+    "/sign-in",
+    "/sign-up",
+    "/forgot-password",
+    "/reset-password",
+    ...additionalPublicPages,
+  ];
+
+  console.log("public pages", publicPages);
+
   if (
     !session &&
-    !req.url.includes("/sign-in") &&
-    !req.url.includes("/sign-up") &&
-    !req.url.includes("/forgot-password") &&
-    !req.url.includes("/")
+    !publicPages.some((page) => pathname.startsWith(page)) &&
+    pathname !== "/"
   ) {
+    console.log("redirecting to sign-in");
     const redirectUrl = req.nextUrl.clone();
     redirectUrl.pathname = "/sign-in";
     redirectUrl.searchParams.set(`redirectedFrom`, req.nextUrl.pathname);
