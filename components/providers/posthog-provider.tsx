@@ -9,7 +9,7 @@ export function CustomPostHogProvider({ children }: any) {
     env.NEXT_PUBLIC_VERCEL_ENV !== "production" ||
     !env.NEXT_PUBLIC_POSTHOG_KEY
   ) {
-    return null;
+    return <>{children}</>;
   }
 
   if (typeof window !== "undefined") {
