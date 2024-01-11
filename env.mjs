@@ -1,9 +1,8 @@
-import { createEnv } from "@t3-oss/env-nextjs"
-import { z } from "zod"
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
 export const env = createEnv({
-  server: {
-  },
+  server: {},
   client: {
     // App
     NEXT_PUBLIC_APP_URL: z.string(),
@@ -38,4 +37,4 @@ export const env = createEnv({
     NEXT_PUBLIC_UMAMI_URL: process.env.NEXT_PUBLIC_UMAMI_URL,
     NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
   },
-})
+});
