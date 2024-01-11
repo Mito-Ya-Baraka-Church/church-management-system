@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { usePostHog } from "posthog-js/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { addDays, format } from "date-fns";
@@ -19,7 +17,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -92,21 +89,19 @@ const defaultValues: Partial<AccountFormValues> = {
   baptism_date: new Date("2023-11-01T12:00:00"),
   is_born_again: true,
   born_again_date: new Date("2023-11-01T12:00:00"),
-  tribe: "asdfas",
+  // tribe: "asdfas",
   // location_name: "asdfasf",
   // nationality: "asdfasdf",
   gender: "female",
 };
 
 export function VisitorForm() {
-  const dispatch = useStoreDispatch();
   const [dateOfVisit, setDateOfVisit] = useState<Date>(new Date());
   const [marriageDate, setMarriageDate] = useState<Date>(new Date());
   const [baptismDate, setBaptismDate] = useState<Date>(new Date());
   const [bornAgainDate, setBornAgainDate] = useState<Date>(new Date());
 
   const router = useRouter();
-  // let user = useStoreSelector(storedUser);
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(visitorFormSchema),
     defaultValues,

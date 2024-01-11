@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { usePostHog } from "posthog-js/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { addDays, format } from "date-fns";
@@ -19,7 +17,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -33,7 +30,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
 import { Checkbox } from "../ui/checkbox";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
@@ -92,7 +88,7 @@ const defaultValues: Partial<AccountFormValues> = {
   baptism_date: new Date("2023-11-01T12:00:00"),
   is_born_again: true,
   born_again_date: new Date("2023-11-01T12:00:00"),
-  tribe: "asdfas",
+  // tribe: "asdfas",
   // location_name: "asdfasf",
   // nationality: "asdfasdf",
   gender: "female",

@@ -30,6 +30,38 @@ export const siteConfig = {
       icon: "dashboard",
     },
   ],
+  dashboardNav: [
+    {
+      title: "Dashboard",
+      href: "/dashboard",
+      icon: "dashboard",
+    },
+    {
+      title: "Members",
+      href: "/members",
+      icon: "members",
+    },
+    {
+      title: "Attendance",
+      href: "/attendance",
+      icon: "attendance",
+    },
+    {
+      title: "Events",
+      href: "/events",
+      icon: "events",
+    },
+    {
+      title: "Finances",
+      href: "/finances",
+      icon: "finances",
+    },
+    {
+      title: "Settings",
+      href: "/settings",
+      icon: "settings",
+    },
+  ],
   links: {
     home: "/",
     about: "/about",

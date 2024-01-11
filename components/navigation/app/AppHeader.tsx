@@ -7,7 +7,7 @@ import { IconGitHub } from "@/components/ui/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 import { siteConfig } from "@/config/site";
-import { MainNav } from "@/components/navigation/main-nav";
+import { Nav } from "@/components/navigation/main-nav";
 import { Icons } from "@/components/misc/icons";
 import { MobileMenu } from "@/components/navigation/app/mobile-menu";
 
@@ -27,7 +27,7 @@ export function AppHeader() {
       </div>
 
       <div className="flex items-center justify-end space-x-2">
-        <MainNav items={siteConfig.mainNav} />
+        <Nav items={siteConfig.mainNav} />
         <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
           <UserOrSignIn />
         </React.Suspense>

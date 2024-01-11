@@ -8,7 +8,7 @@ export function SignInButton() {
   const pathname = usePathname();
   return (
     <Button variant="link" asChild className="-ml-2">
-      <Link href={`/sign-in?redirect=${pathname}`}>Sign in</Link>
+      <Link href={`/sign-in?redirectedFrom=${pathname}`}>Sign in</Link>
     </Button>
   );
 }
