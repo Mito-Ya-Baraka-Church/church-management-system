@@ -5,13 +5,15 @@ import { ExternalLink } from "@/components/external-link";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
+const { version, footerNav } = siteConfig;
+
 export function AppFooter() {
   return (
     <footer className="grid w-full shrink-0 grid-cols-1 flex-col items-center justify-center gap-2 border-t px-4 py-6 sm:grid-cols-3 sm:flex-row md:px-6">
       <div className="order-3 flex justify-center gap-2 sm:order-1 sm:justify-start">
         <p className="text-xs text-muted-foreground ">
           © FaceBlur AI. All rights reserved {new Date().getFullYear()}. version{" "}
-          {siteConfig.version}
+          {version}
         </p>
       </div>
       <div className="order-2 flex justify-center gap-2 sm:order-2">
@@ -32,15 +34,17 @@ export function AppFooter() {
       </div>
       <div className="order-1 flex justify-center gap-2 sm:order-3 sm:justify-end">
         <nav className="flex gap-4 sm:ml-auto sm:gap-6">
-          <Link className="text-xs underline-offset-4 hover:underline" href="#">
-            Privacy Policy
-          </Link>
-          <Link className="text-xs underline-offset-4 hover:underline" href="#">
-            Terms of Service
-          </Link>
-          <Link className="text-xs underline-offset-4 hover:underline" href="#">
-            Contact
-          </Link>
+          {footerNav.map((item, index) => {
+            return (
+              <Link
+                key={index}
+                className="text-xs underline-offset-4 hover:underline"
+                href={item.href}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </footer>
