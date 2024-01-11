@@ -31,7 +31,7 @@ export async function middleware(req: NextRequest) {
     ...additionalPublicPages,
   ];
 
-  console.log("public pages", publicPages);
+  // console.log("public pages", publicPages);
 
   if (
     !session &&
