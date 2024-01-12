@@ -1,59 +1,94 @@
-import getConfig from "next/config"
+import { env } from "@/env.mjs";
+import packageJson from "../package.json";
 
-import { env } from "@/env.mjs"
+export type PackageJson = typeof packageJson;
+export type SiteConfig = typeof siteConfig;
 
-// const { publicRuntimeConfig } = getConfig()
-export type SiteConfig = typeof siteConfig
+const { version } = packageJson;
 
 export const siteConfig = {
-  title: "Next Js Directus Starter",
-  name: "Next-js-directus-starter",
+  title: "Mito Ya Baraka Church Management System",
+  name: " Mito Ya Baraka",
   canonical: "https://nextjs-starter-shadcn.vercel.app/",
   domain: "https://nextjs-starter-shadcn.vercel.app/",
-  // directusUrl: env.DIRECTUS_URL,
   nextUrl: env.NEXT_PUBLIC_APP_URL,
   image:
     "https://storage.googleapis.com/brandflow-bucket/personal/blog/portfolio-og.jpg",
   type: "website",
   twitterHandle: "@fredygerman_",
   description:
-    "Amazing starter with Directus Next.js, TypeScript, ESLint, Prettier, chadcn-ui",
+    "Amazing starter with Supabase Next.js, TypeScript, ESLint, Prettier, chadcn-ui",
   mainNav: [
     {
-      title: "Home",
-      href: "/",
+      title: "Register",
+      href: "/register",
+      icon: "register",
     },
     {
-      title: "About",
-      href: "/about",
+      title: "Dashboard",
+      href: "/dashboard",
+      icon: "dashboard",
     },
-
+  ],
+  dashboardNav: [
+    {
+      title: "Dashboard",
+      href: "/dashboard",
+      icon: "dashboard",
+    },
+    {
+      title: "Members",
+      href: "/members",
+      icon: "members",
+    },
+    {
+      title: "Attendance",
+      href: "/attendance",
+      icon: "attendance",
+    },
+    {
+      title: "Events",
+      href: "/events",
+      icon: "events",
+    },
+    {
+      title: "Finances",
+      href: "/finances",
+      icon: "finances",
+    },
+    {
+      title: "Settings",
+      href: "/settings",
+      icon: "settings",
+    },
+  ],
+  footerNav: [
+    {
+      title: "Privacy Policy",
+      href: "/privacy-policy",
+      icon: "privacy-policy",
+    },
+    {
+      title: "Terms of Service",
+      href: "/terms-and-conditions",
+      icon: "terms-and-conditions",
+    },
     {
       title: "Contact",
       href: "/contact",
-    },
-    {
-      title: "Login",
-      href: "/auth/login",
-    },
-    {
-      title: "Sign In",
-      href: "/auth/sign-in",
+      icon: "contact",
     },
   ],
-  links: {
-    home: "/",
-    about: "/about",
-    blog: "/blog",
-    login: "/auth/login",
-    signup: "/auth/signup",
-    contact: "/contact",
-    privacyPolicy: "/privacy-policy",
-    termsAndConditions: "/terms-and-conditions",
-    dashboard: "/dashboard",
-    admin: "/admin",
-    adminDashboard: "/admin/dashboard",
-  },
+  // please don't remove this array, it's used for the auth middleware
+  // please don't add "/" to this array, it's already added in the middleware
+  additionalPublicPages: [
+    "/about",
+    "/blog",
+    "/blogs",
+    "/contact",
+    "/privacy-policy",
+    "/terms-and-conditions",
+  ],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
@@ -94,9 +129,10 @@ export const siteConfig = {
       asset: "/phone.svg",
     },
   ],
-  // version: publicRuntimeConfig?.version || "unknown",
-  version: "0.0.1",
-  author: "fredygerman", // make sure this is also your github username
+  showGitHubBtn: false,
+  githubUrl: "https://github.com/fredygerman",
+  version: version,
+  author: "fredygerman",
   authorUrl: "https://github.com/fredygerman",
-  gitHubApiRepoName: "fredygerman/next-js-directus-starter",
-}
+  gitHubApiRepoName: "fredygerman/next-js-supabase-starter",
+};

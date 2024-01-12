@@ -1,38 +1,40 @@
-import { createEnv } from "@t3-oss/env-nextjs"
-import { z } from "zod"
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
 export const env = createEnv({
-  server: {
-    // Directus
-    DIRECTUS_URL: z.string(),
-    DIRECTUS_TOKEN_EXPIRATION_ADJUSTMENT: z.string(),
-    // DIRECTUS_USER_CREATOR_TOKEN: z.string().optional(),
-    // DIRECTUS_DEFAULT_ROLE_ID: z.string(),
-    DIRECTUS_PROJECT_NAME: z.string().optional(),
-  },
+  server: {},
   client: {
     // App
     NEXT_PUBLIC_APP_URL: z.string(),
-    NODE_ENV: z.string().optional(),
+    NEXT_PUBLIC_VERCEL_ENV: z.string().optional(),
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
     NEXT_PUBLIC_HOST_URL: z.string().optional(),
+
+    // Supabase
+    NEXT_PUBLIC_SUPABASE_URL: z.string(),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
+
+    // Umami
+    NEXT_PUBLIC_UMAMI_URL: z.string(),
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.string().optional(),
   },
   runtimeEnv: {
     // App
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
-    NODE_ENV: process.env.NODE_ENV,
-
-    DIRECTUS_URL: process.env.DIRECTUS_URL,
-    DIRECTUS_TOKEN_EXPIRATION_ADJUSTMENT:
-      process.env.DIRECTUS_TOKEN_EXPIRATION_ADJUSTMENT,
-    // DIRECTUS_DEFAULT_ROLE_ID: process.env.DIRECTUS_DEFAULT_ROLE_ID,
-    // DIRECTUS_USER_CREATOR_TOKEN: process.env.DIRECTUS_USER_CREATOR_TOKEN,
-    DIRECTUS_PROJECT_NAME: process.env.DIRECTUS_PROJECT_NAME,
+    NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
 
     // Posthog
-    // NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
-    // NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
+    NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+    NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
+
+    // Supabase
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+
+    // Umami
+    NEXT_PUBLIC_UMAMI_URL: process.env.NEXT_PUBLIC_UMAMI_URL,
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
   },
-})
+});

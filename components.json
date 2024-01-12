@@ -3,7 +3,7 @@
   "style": "default",
   "tailwind": {
     "config": "tailwind.config.js",
-    "css": "styles/globals.css",
+    "css": "app/globals.css",
     "baseColor": "slate",
     "cssVariables": true
   },
@@ -11,8 +11,16 @@
   "aliases": {
     "utils": "@/lib/utils",
     "components": "@/components",
+    "layouts": "@/layouts",
+    "styles": "@/styles",
+    "icons": "@/components/icons",
+    "public": "@/public",
+    "lib": "@/lib",
+    "app": "@/app",
+    "pages": "@/pages",
     "types": "@/types",
     "hooks": "@/hooks",
-    "helpers": "@/helpers"
+    "config": "@/config",
+    "api": "@/app/api"
   }
 }

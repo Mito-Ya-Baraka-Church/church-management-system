@@ -1,70 +1,67 @@
-# Mito Ya Baraka Church Management System
+<a href="">
+  <img alt="Next.js 14" src="https:/vercel.ai/opengraph-image.png" />
+  <h1 align="center">Church Management System </h1>
+</a>
 
-A Church Management Platform for Mito Ya Baraka Church.
+<p align="center">
+  A Church Management System built with Next.js 14, React Server Components, and Supabase.
+</p>
+
+<br/>
 
 ## Features
 
-- Staff Login 
+- [Next.js 14](https://nextjs.org) App Router
+- React Server Components (RSCs), Suspense, and Server Actions
+- [Supabase](https://supabase.com) for authentication and data storage
 
-## Roadmap
+### Configure your site url
 
-- [✅] Staff Login
-- [ ] Member Registration
-- [ ] Visitor Registration
-- [ ] View Members
-- [ ] View Visitors
-- [ ] Eit Members & Visitors
-- [ ] Add Analytics
+In the Supabase Dashboard, navigate to [Auth > URL configuration](https://app.supabase.com/project/_/auth/url-configuration) and set your Vercel URL as the site URL.
 
-## Usage
+## Running locally
 
-```bash
-git clone https://github.com/fredygerman/next-js-directus-starter.git
-```
+You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js Church Management System . It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
 
-### Change directory
+> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control access to your various OpenAI and authentication provider accounts.
 
-```bash
-cd next-js-directus-starter
-```
-
-### Install Dependencies
-
-```bash
-pnpm install
-```
-
-### Start Directus CMS
-
-Make sure your Directus CMS is running and you have created a project.
-
-### Define Environment Variables
+Copy the `.env.example` file and populate the required env vars:
 
 ```bash
 cp .env.example .env
 ```
 
-Note : Make sure all the environment variables are defined in your .env file.
-
-For the DIRECTUS_DEFAULT_ROLE_ID you can use the default role id from your directus project.
-For DIRECTUS_USER_CREATOR_TOKEN you need to create a user and a static token in your directus project.
-
-### Start the development server
+[Install the Supabase CLI](https://supabase.com/docs/guides/cli) and start the local Supabase stack:
 
 ```bash
-pnpm run dev
+npm install supabase --save-dev
+npx supabase start
 ```
 
-### You can now view the app in your browser at http://localhost:3000 🚀
+Install the local dependencies and start dev mode:
 
+```bash
+pnpm install
+pnpm dev
+```
 
-## Customizations and configurations.
+<!-- you can add types from project by running pnpm run update-types -->
 
-- Site Config (site.ts) for Site Information configuration (i.e Name, Title, Nav Bar items, Links etc).
-- Response Messages Config (messages.ts) for Creating user friendly response messages.
-- [@t3-oss/env-nextjs](https://create.t3.gg/en/usage/env-variables) For Environment Variables configuration. (env.mjs)
-- and other config files. (tailwind.config.js, postcss.config.js, next.config, prettier.config.js)
+You can update the types from the project by running:
 
-## License
+```bash
+pnpm run update-types
+```
 
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
+Your app template should now be running on [localhost:3000](http://localhost:3000/).
+
+## Authors
+
+This Project was built by Mito-Ya-Baraka-Church Developers and contributors:
+
+- [Fredy German](https://twitter.com/fredygermanm)
+- etc.
+
+## Credits
+
+Images from [Unsplash](https://unsplash.com/) and [Dall-E](https://labs.openai.com/).

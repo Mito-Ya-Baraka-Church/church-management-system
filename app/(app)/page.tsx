@@ -1,85 +1,46 @@
-import posthog from "posthog-js"
+import posthog from "posthog-js";
 
-import { env } from "@/env.mjs"
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
-import { AdvancedLink } from "@/components/advanced/advanced-link"
-
-async function getGitHubStars(): Promise<string | null> {
-  try {
-    const response = await fetch(
-      `"https://api.github.com/repos/${siteConfig.author}/${siteConfig.gitHubApiRepoName}"`,
-      {
-        headers: {
-          Accept: "application/vnd.github+json",
-          Authorization: `Bearer ${env.GITHUB_ACCESS_TOKEN}`,
-        },
-        next: {
-          revalidate: 60,
-        },
-      }
-    )
-
-    if (!response?.ok) {
-      return null
-    }
-
-    const json = await response.json()
-
-    return parseInt(json["stargazers_count"]).toLocaleString()
-  } catch (error) {
-    return null
-  }
-}
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function IndexPage() {
-  const stars = await getGitHubStars()
-
   return (
     <>
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-          <AdvancedLink
+          <Link
             href={
               siteConfig.socials.find((social) => social.name === "Twitter")
                 ?.url ?? "#"
             }
             className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium"
             target="_blank"
-            analyticsValue="clicked_follow_on_twitter"
-            analyticsProperties={{ source: "home_page" }}
           >
             Follow along on Twitter
-          </AdvancedLink>
+          </Link>
           <h1 className="font-heading text-3xl font-extrabold leading-tight tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-            Next.js 13 & Directus CMS Starter 🚀
+            Next.js 13 & Supabase CMS Starter 🚀
           </h1>
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            I&apos;m building a next js starter web app with directus as a
+            I&apos;m building a next js starter web app with Supabase as a
             headless cms and tailwind css for styling. This will will include
             examples for common uses like authentication, data fetching,
             websockets, file uploads, and more. Follow along on Twitter for
             updates.
           </p>
           <div className="space-x-4">
-            <AdvancedLink
-              href="/login"
-              className={cn(buttonVariants({ size: "lg" }))}
-              analyticsValue="clicked_get_started"
-              analyticsProperties={{ source: "home_page" }}
-            >
+            <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
               Get Started
-            </AdvancedLink>
+            </Link>
 
-            <AdvancedLink
+            <Link
               href="#features"
               className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
-              analyticsValue="clicked_features"
-              analyticsProperties={{ source: "home_page" }}
             >
               Features
-            </AdvancedLink>
+            </Link>
           </div>
         </div>
       </section>
@@ -132,9 +93,9 @@ export default async function IndexPage() {
                 {/* <path d="M19.187 13.909a1.74 1.74 0 0 1-.286-.092.657.657 0 0 1-.203-.139c.056-.488 0-.912.047-1.392.184-1.862 1.355-1.272 2.406-1.577.655-.184 1.31-.562 1.475-1.336a13.528 13.528 0 0 0-2.397-2.204c-2.85-2.028-6.574-2.84-9.958-2.277a5.113 5.113 0 0 0 2.238 2.074s-.917 0-1.703-.587c-.23.092-.692.274-.913.384a5.094 5.094 0 0 0 6.63.37c-.01.017-.185.285-.397 1.4-.47 2.38-1.826 2.195-3.504 1.596-3.485-1.264-5.403-.093-7.145-2.49-.507.286-.82.82-.82 1.402 0 .599.331 1.106.81 1.383.262-.348.38-.446.836-.446-.706.4-.79.75-1.094 1.718-.368 1.171-.212 2.37-1.936 2.683-.913.046-.894.664-1.226 1.586-.415 1.199-.968 1.678-2.047 2.812.443.535.904.6 1.374.406.968-.406 1.715-1.66 2.415-2.471.784-.904 2.665-.517 4.085-1.402.977-.599 1.457-1.41.811-2.784a2.72 2.72 0 0 1 .701 1.66c1.641-.213 3.836 1.788 5.836 2.12a3.574 3.574 0 0 1-.488-.82c-.23-.554-.304-1.06-.258-1.503.184 1.097 1.29 2.507 3.07 2.637.452.036.95-.019 1.466-.176.618-.184 1.19-.424 1.872-.295.507.093.977.35 1.272.784.443.645 1.41.784 1.844-.009-.977-2.554-3.67-2.72-4.813-3.015z" /> */}
               </svg>
               <div className="space-y-2">
-                <h3 className="font-bold">Directus CMS</h3>
+                <h3 className="font-bold">Supabase CMS</h3>
                 <p className="text-sm text-muted-foreground">
-                  Directus is an open-source headless CMS, with a fully-featured
+                  Supabase is an open-source headless CMS, with a fully-featured
                   Studio for data management and a customizable API for content
                   delivery.
                 </p>
@@ -204,9 +165,9 @@ export default async function IndexPage() {
             Proudly Open Source
           </h2>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            The main objective is to help developers who use Directus and Next
+            The main objective is to help developers who use Supabase and Next
             Js to build their apps faster.
-            <AdvancedLink
+            <Link
               href={
                 siteConfig.socials.find((social) => social.name === "Github")
                   ?.url ?? "#"
@@ -214,42 +175,13 @@ export default async function IndexPage() {
               target="_blank"
               rel="noreferrer"
               className="underline underline-offset-4"
-              analyticsValue="github"
-              analyticsProperties={{ source: "home_page" }}
             >
               GitHub
-            </AdvancedLink>
+            </Link>
             .{" "}
           </p>
-          {stars && (
-            <AdvancedLink
-              href={`https:/github.com/${siteConfig.gitHubApiRepoName}` ?? "#"}
-              target="_blank"
-              rel="noreferrer"
-              className="flex"
-              analyticsValue="github"
-              analyticsProperties={{ source: "home_page" }}
-            >
-              <div className="flex h-10 w-10 items-center justify-center space-x-2 rounded-md border border-muted bg-muted">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5 text-foreground"
-                >
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
-                </svg>
-              </div>
-              <div className="flex items-center">
-                <div className="h-4 w-4 border-y-8 border-l-0 border-r-8 border-solid border-muted border-y-transparent"></div>
-                <div className="flex h-10 items-center rounded-md border border-muted bg-muted px-4 font-medium">
-                  {stars} stars on GitHub
-                </div>
-              </div>
-            </AdvancedLink>
-          )}
         </div>
       </section>
     </>
-  )
+  );
 }
