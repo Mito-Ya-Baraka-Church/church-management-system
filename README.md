@@ -1,10 +1,10 @@
 <a href="">
   <img alt="Next.js 14" src="https:/vercel.ai/opengraph-image.png" />
-  <h1 align="center">Next.js AI Face Blur </h1>
+  <h1 align="center">Church Management System </h1>
 </a>
 
 <p align="center">
-  An open-source AI Face Blur app built with <a href="https://nextjs.org">Next.js</a> and <a href="https://supabase.com">Supabase</a>.
+  A Church Management System built with Next.js 14, React Server Components, and Supabase.
 </p>
 
 <br/>
@@ -21,7 +21,7 @@ In the Supabase Dashboard, navigate to [Auth > URL configuration](https://app.su
 
 ## Running locally
 
-You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js Face Blur AI . It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
+You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js Church Management System . It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
 
 > Note: You should not commit your `.env` file or it will expose secrets that will allow others to control access to your various OpenAI and authentication provider accounts.
 
@@ -57,7 +57,7 @@ Your app template should now be running on [localhost:3000](http://localhost:300
 
 ## Authors
 
-This Project was built by DTC members and contributors:
+This Project was built by Mito-Ya-Baraka-Church Developers and contributors:
 
 - [Fredy German](https://twitter.com/fredygermanm)
 - etc.
@@ -65,5 +65,3 @@ This Project was built by DTC members and contributors:
 ## Credits
 
 Images from [Unsplash](https://unsplash.com/) and [Dall-E](https://labs.openai.com/).
-
-<!-- https://unsplash.com/photos/selective-focus-photography-of-man-in-gray-crew-neck-shirt-Ve7xjKImd28 -->

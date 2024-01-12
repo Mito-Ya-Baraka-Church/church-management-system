@@ -1,7 +1,7 @@
 {
-  "name": "mito-ya-baraka-church-management",
+  "name": "church-management-system",
   "version": "0.0.1",
-  "description": "Face Blur is a tool that allows you to blur faces in images. It uses AI to detect faces and blur them.",
+  "description": "A church management system,",
   "author": "Fredy German",
   "private": true,
   "resolveJsonModule": true,
@@ -13,7 +13,7 @@
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
     "type-check": "tsc --noEmit",
-    "update-types": "npx supabase gen types typescript --project-id hriwdlfljbreqtaymgfn > types/db_types.ts",
+    "update-types": "npx supabase gen types typescript --project-id dllddawbbwnlzotztysv > types/db_types.ts",
     "format:write": "prettier --write \"{app,lib,components}/**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"{app,lib,components}**/*.{ts,tsx,mdx}\" --cache"
   },
