@@ -1,7 +1,7 @@
-import Link from "next/link"
+import Link from "next/link";
 
-import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
+import { siteConfig } from "@/config/site";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function IndexPage() {
   return (
@@ -18,7 +18,7 @@ export default function IndexPage() {
       </div>
       <div className="flex gap-4">
         <Link
-          href={siteConfig.links.home}
+          href="/"
           target="_blank"
           rel="noreferrer"
           className={buttonVariants()}
@@ -28,12 +28,12 @@ export default function IndexPage() {
         <Link
           target="_blank"
           rel="noreferrer"
-          href={siteConfig.links.home}
+          href="/"
           className={buttonVariants({ variant: "outline" })}
         >
           GitHub
         </Link>
       </div>
     </section>
-  )
+  );
 }
