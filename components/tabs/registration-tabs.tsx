@@ -12,7 +12,7 @@ import { MemberFrom } from "../forms/member-form";
 
 export function RegistrationTabs() {
   return (
-    <Tabs defaultValue="member" className="w-[90%]">
+    <Tabs defaultValue="member" className="w-full">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="visitor">Visitor</TabsTrigger>
         <TabsTrigger value="member">Member</TabsTrigger>
