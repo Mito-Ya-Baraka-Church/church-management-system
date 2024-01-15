@@ -10,6 +10,7 @@ export default async function Page() {
   const headersList = headers();
   const cookieStore = cookies();
   const session: Session | null = await auth({ cookieStore });
+  // console.log("session subHeader", session);
   const userRole = session?.user?.role || "guest";
   const pathname = headersList.get("x-pathname") || "";
   console.log("pathname subHeader", pathname);

@@ -17,9 +17,6 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getSession();
   const pathname = req.nextUrl.pathname;
 
-  // console.log("pathname", pathname);
-  // console.log("session", session);
-
   // OPTIONAL: this forces users to be logged in to use the app
   // unless they are on a public pages array.
   // If you want to allow anonymous users, simply remove the check below.
@@ -48,21 +45,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
-  const userRole = session?.user?.role || "visitor";
-
-  const adminOnlyPages = ["/dashboard/admin"];
-  // if user role is not admin and the path starts with /admin redirect to /
-
-  return NextResponse.next({
-    request: {
-      headers: new Headers({
-        "x-url": req.nextUrl.toString(),
-        "x-pathname": pathname,
-      }),
-    },
-  });
-
-  // return res;
+  return res;
 }
 
 export const config = {
@@ -75,6 +58,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!share|api|_next/static|_next/image|favicon.ico|.*\\.svg$|.*\\.png$|.*\\.ico$).*)",
+    "/((?!share|api|_next/static|_next/image|favicon.ico).*)",
   ],
 };
