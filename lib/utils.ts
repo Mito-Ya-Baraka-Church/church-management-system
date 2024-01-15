@@ -49,3 +49,7 @@ export function convertPathToName(pathname: string): string {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize first letter
     .join(" ");
 }
+
+export async function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

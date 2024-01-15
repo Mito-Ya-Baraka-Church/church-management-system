@@ -1,6 +1,6 @@
 import { RegistrationTabs } from "@/components/tabs/registration-tabs";
 
-export default function IndexPage() {
+export default function Page() {
   return (
     <>
       <section className="container grid items-center gap-6 md:py-12">

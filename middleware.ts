@@ -45,7 +45,19 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
-  return res;
+  const userRole = session?.user?.role || "visitor";
+
+  const adminOnlyPages = ["/dashboard/admin"];
+  // if user role is not admin and the path starts with /admin redirect to /
+
+  return NextResponse.next({
+    request: {
+      headers: new Headers({
+        "x-url": req.nextUrl.toString(),
+        "x-pathname": pathname,
+      }),
+    },
+  });
 }
 
 export const config = {

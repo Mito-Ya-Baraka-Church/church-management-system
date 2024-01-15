@@ -5,14 +5,14 @@ import { ExternalLink } from "@/components/external-link";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
-const { version, footerNav } = siteConfig;
+const { version, footerNav, name } = siteConfig;
 
 export function AppFooter() {
   return (
     <footer className="grid w-full shrink-0 grid-cols-1 flex-col items-center justify-center gap-2 border-t px-4 py-6 sm:grid-cols-3 sm:flex-row md:px-6">
       <div className="order-3 flex justify-center gap-2 sm:order-1 sm:justify-start">
         <p className="text-xs text-muted-foreground ">
-          © FaceBlur AI. All rights reserved {new Date().getFullYear()}. version{" "}
+          © {name}. All rights reserved {new Date().getFullYear()}. version{" "}
           {version}
         </p>
       </div>
