@@ -1,7 +1,7 @@
 import { AppFooter } from "@/components/navigation/app/AppFooter";
 import { AppHeader } from "@/components/navigation/app/AppHeader";
 
-export default function RootLayout({
+export default function Layout({
   children,
   subHeader,
   pages,
