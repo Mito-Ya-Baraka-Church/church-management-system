@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, convertPathToName } from "@/lib/utils";
 import { Tab } from "@/types/nav";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -29,11 +29,16 @@ export function DashboardTabs({ userRole }: { userRole: string }) {
   }
 
   return (
-    <div className="flex  min-h-[40px] flex-wrap items-center justify-between gap-4 rounded-lg bg-muted p-2 text-muted-foreground">
-      <nav className="flex flex-row flex-wrap gap-2">
-        {dashboardTabs.map(renderTab)}
-        {userRole === "admin" && adminDashboardTabs.map(renderTab)}
-      </nav>
-    </div>
+    <>
+      <h2 className="text-2xl font-bold text-foreground">
+        {convertPathToName(pathname)}
+      </h2>
+      <div className="inline-flex  min-h-[40px] flex-wrap items-center justify-between gap-4 rounded-lg bg-muted p-2 text-muted-foreground">
+        <nav className="flex flex-row flex-wrap gap-2">
+          {dashboardTabs.map(renderTab)}
+          {userRole === "admin" && adminDashboardTabs.map(renderTab)}
+        </nav>
+      </div>{" "}
+    </>
   );
 }
