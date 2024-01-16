@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import DashboardCards from "@/components/dashboard/stats-cards";
-import { DashboardTabs } from "@/components/navigation/dashboard/DashboardTabs";
+import { DashboardTabs } from "@/components/navigation/dashboard/dashboard-tabs";
 import { cn } from "@/lib/utils";
 import { Session } from "@supabase/supabase-js";
 import { cookies, headers } from "next/headers";
@@ -12,7 +12,7 @@ export default async function Page() {
   const cookieStore = cookies();
   const session: Session | null = await auth({ cookieStore });
   // console.log("session subHeader", session);
-  const userRole = session?.user?.role || "guest";
+  const userRole = "admin"; // session?.user?.role || "guest
   const pathname = headersList.get("x-pathname") || "";
   console.log("pathname subHeader", pathname);
   const isAdminPage = pathname?.includes("/admin") ? true : false;
@@ -20,9 +20,7 @@ export default async function Page() {
 
   return (
     <div className="prose prose-sm prose-invert max-w-none">
-      <Suspense fallback={<p>Loading tabs...</p>}>
         <DashboardTabs userRole={userRole} />
-      </Suspense>
     </div>
   );
 }
