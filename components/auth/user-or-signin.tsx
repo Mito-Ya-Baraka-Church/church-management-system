@@ -6,7 +6,7 @@ import { getCurrentUserSession } from "@/actions/auth";
 
 export async function UserOrSignIn() {
   const session = await getCurrentUserSession();
-  console.log("session1", session);
+  // console.log("session", session);
 
   return (
     <div className="flex items-center">

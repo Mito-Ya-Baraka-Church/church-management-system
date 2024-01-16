@@ -5,13 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-export function DashboardTabs({
-  isAdminPage,
-  userRole,
-}: {
-  isAdminPage: boolean;
-  userRole: string;
-}) {
+export function DashboardTabs({ userRole }: { userRole: string }) {
   const pathname = usePathname();
   const tabs = [
     {

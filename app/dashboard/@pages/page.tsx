@@ -1,7 +1,15 @@
-export default function Page() {
+import { auth } from "@/auth";
+import DashboardCards from "@/components/dashboard/stats-cards";
+import { Session } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
+
+export default async function Page() {
+  const cookieStore = cookies();
+  const session: Session | null = await auth({ cookieStore });
+  const userRole = session?.user?.role || "guest";
   return (
     <div className="prose prose-sm prose-invert max-w-none">
-      <h2 className="text-lg font-bold">Dashboard Charts</h2>
+      <DashboardCards userRole={userRole} />
     </div>
   );
 }
