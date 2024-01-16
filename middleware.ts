@@ -6,6 +6,7 @@ import { siteConfig } from "./config/site";
 const { additionalPublicPages } = siteConfig;
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
+  const requestHeaders = new Headers(req.headers);
 
   // Create a Supabase client configured to use cookies
   const supabase = createMiddlewareClient({ req, res });
@@ -45,6 +46,18 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
+  // return NextResponse.next({
+  //   request: {
+  //     headers: new Headers({
+  //       "x-url": req.nextUrl.toString(),
+  //       "x-pathname": pathname,
+  //     }),
+  //   },
+  // });
+
+  requestHeaders.set("x-url", req.nextUrl.toString());
+  requestHeaders.set("x-pathname", pathname);
+
   return res;
 }
 
@@ -58,6 +71,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!share|api|_next/static|_next/image|favicon.ico).*)",
+    "/((?!share|api|_next/static|_next/image|favicon.ico|favicon-16x16.png).*)",
   ],
 };
