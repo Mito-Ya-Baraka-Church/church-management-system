@@ -65,7 +65,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <div
             className={cn(
-              "min-h-screen bg-background font-sans antialiased",
+              "min-h-screen bg-muted/50 font-sans antialiased",
               fontSans.variable
             )}
           >

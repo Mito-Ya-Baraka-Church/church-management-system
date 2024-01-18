@@ -77,7 +77,8 @@ export function DashboardHeader() {
       </header>
       <DashboardSubHeader />
       <div
-        className={`sticky z-50 hidden h-[1.4px]  bg-[#ffffff24] md:flex ${
+        className={`sticky z-50 hidden h-[1.4px]  bg-muted-foreground dark:bg-[#ffffff24] md:flex
+        ${
           process.env.NEXT_PUBLIC_VERCEL_ENV !== "production"
             ? "top-16"
             : "top-[3rem]"
