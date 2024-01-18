@@ -2,29 +2,23 @@ import * as React from "react";
 import Link from "next/link";
 
 import { ThemeToggle } from "@/components/theme-toggle";
-import useScrollPosition from "@react-hook/window-scroll";
 
 import { siteConfig } from "@/config/site";
 import { Nav } from "@/components/navigation/main-nav";
-import { Icons } from "@/components/misc/icons";
 import { MobileMenu } from "@/components/navigation/app/mobile-menu";
 
 import { UserOrSignIn } from "@/components/auth/user-or-signin";
 import { cn } from "@/lib/utils";
 import { IconGitHub } from "@/components/ui/icons";
 import { buttonVariants } from "@/components/ui/button";
-import { getCurrentUserSession } from "@/actions/auth";
-import { UserMenu } from "@/components/user-menu";
-import { SignInButton } from "@/components/auth/user-login";
-import { Session } from "@supabase/supabase-js";
-import { ScalingLogo } from "./scaling-logo";
-import { DashboardSubHeader } from "./dashboard-sub-header";
+import { ScalingLogo } from "@/components/navigation/dashboard/scaling-logo";
+import { DashboardSubHeader } from "@/components/navigation/dashboard/dashboard-sub-header";
 
 export function DashboardHeader() {
   return (
     <>
       <header
-        className={`flex justify-between  gap-4  bg-background px-6 py-4 pl-16 text-sm
+        className={`flex justify-between  gap-4  bg-background px-6 pb-0 pl-16 pt-4 text-sm
             ${
               process.env.NEXT_PUBLIC_VERCEL_ENV !== "production" ? "top-4" : ""
             }`}
@@ -59,6 +53,7 @@ export function DashboardHeader() {
         </div>
       </header>
       <DashboardSubHeader />
+      <div className="sticky top-16 z-50  h-[1.4px] bg-muted" />
     </>
   );
 }

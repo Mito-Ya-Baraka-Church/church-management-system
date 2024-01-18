@@ -38,27 +38,27 @@ export const siteConfig = {
     },
     {
       title: "Members",
-      href: "/members",
+      href: "/dashboard/members",
       icon: "members",
     },
     {
       title: "Attendance",
-      href: "/attendance",
+      href: "/dashboard/attendance",
       icon: "attendance",
     },
     {
       title: "Events",
-      href: "/events",
+      href: "/dashboard/events",
       icon: "events",
     },
     {
       title: "Finances",
-      href: "/finances",
+      href: "/dashboard/finances",
       icon: "finances",
     },
     {
       title: "Settings",
-      href: "/settings",
+      href: "/dashboard/settings",
       icon: "settings",
     },
   ],
