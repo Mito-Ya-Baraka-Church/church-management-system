@@ -2,7 +2,11 @@
 import { useMemo } from "react";
 import useScrollPosition from "@react-hook/window-scroll";
 
-export function ScalingLogo() {
+export function ScalingLogo({
+  path = "M37.59.25l36.95 64H.64l36.95-64z",
+}: {
+  path?: string;
+}) {
   const useRange = (
     num: number,
     inMin: number,
@@ -29,13 +33,13 @@ export function ScalingLogo() {
       style={{
         transform: `scale(${logoScale})`,
       }}
-      className="fixed left-6 z-50"
+      className="fixed left-14 z-50 md:left-6"
       aria-label="Vercel Logo"
-      fill="white"
+      fill="currentColor"
       viewBox="0 0 75 65"
       height="22"
     >
-      <path d="M37.59.25l36.95 64H.64l36.95-64z"></path>
+      <path d={path} />
     </svg>
   );
 }

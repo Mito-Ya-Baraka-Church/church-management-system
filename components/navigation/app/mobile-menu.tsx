@@ -10,7 +10,6 @@ import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { Icons } from "@/components/misc/icons";
 
-
 export function MobileMenu() {
   return (
     <Sheet>

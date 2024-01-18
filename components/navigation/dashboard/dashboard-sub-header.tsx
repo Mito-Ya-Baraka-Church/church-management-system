@@ -31,7 +31,7 @@ export function DashboardSubHeader() {
   return (
     <>
       <div
-        className={` sticky  top-0  gap-4 bg-background px-6  pb-[0.75rem] pt-4
+        className={` sticky  top-0  hidden gap-4 bg-background  px-6 pb-[0.75rem] pt-4 md:flex
       ${process.env.NEXT_PUBLIC_VERCEL_ENV !== "production" ? "top-4" : ""}`}
         style={{
           transform: `translateX(${navX}px)`,

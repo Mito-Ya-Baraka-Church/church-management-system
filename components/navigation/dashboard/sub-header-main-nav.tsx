@@ -10,7 +10,7 @@ export function SubHeaderNav({ items }: NavProps) {
   return (
     <>
       <nav
-        className=" hidden px-1  md:flex md:items-center md:justify-between md:gap-6"
+        className=" hidden bg-background px-1 md:flex md:items-center md:justify-between md:gap-6"
         suppressHydrationWarning={true}
       >
         {items?.length ? (
