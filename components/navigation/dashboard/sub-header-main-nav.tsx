@@ -1,22 +1,34 @@
 "use client";
 import Link from "next/link";
-import { NavProps } from "@/types/general";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { NavItem } from "@/types/nav";
 
-export function SubHeaderNav({ items }: NavProps) {
+export function SubHeaderNav({
+  items,
+  transform,
+}: {
+  items: NavItem[];
+  transform?: string;
+}) {
   const pathname = usePathname();
+  if (!items?.length) {
+    return null;
+  }
 
   return (
     <>
       <nav
         className=" hidden bg-background px-1 md:flex md:items-center md:justify-between md:gap-6"
         suppressHydrationWarning={true}
+        style={{
+          transform: transform ? transform : "",
+        }}
       >
         {items?.length ? (
           <div className="flex gap-6 ">
             {items?.map(
-              (item, index) =>
+              (item: NavItem, index: number) =>
                 item.href && (
                   <Link
                     key={index}

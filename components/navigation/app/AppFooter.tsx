@@ -4,8 +4,10 @@ import { cn } from "@/lib/utils";
 import { ExternalLink } from "@/components/external-link";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { navigationConfig } from "@/config/navigation";
 
-const { version, footerNav, name } = siteConfig;
+const { version, name } = siteConfig;
+const { footerNav } = navigationConfig;
 
 export function AppFooter() {
   return (

@@ -1,11 +1,10 @@
 "use client";
 import useScrollPosition from "@react-hook/window-scroll";
 import { useMemo } from "react";
-import { Nav } from "../main-nav";
-import { SubHeaderNav } from "./sub-header-main-nav";
-import { siteConfig } from "@/config/site";
+import { SubHeaderNav } from "@/components/navigation/dashboard/sub-header-main-nav";
+import { navigationConfig } from "@/config/navigation";
 
-const { dashboardNav } = siteConfig;
+const { dashboardSubHeaderNav } = navigationConfig;
 
 export function DashboardSubHeader() {
   const useRange = (
@@ -33,11 +32,11 @@ export function DashboardSubHeader() {
       <div
         className={` sticky  top-0  hidden gap-4 bg-background  px-6 pb-[0.75rem] pt-4 md:flex
       ${process.env.NEXT_PUBLIC_VERCEL_ENV !== "production" ? "top-4" : ""}`}
-        style={{
-          transform: `translateX(${navX}px)`,
-        }}
       >
-        <SubHeaderNav items={dashboardNav} />
+        <SubHeaderNav
+          items={dashboardSubHeaderNav}
+          transform={`translateX(${navX}px)`}
+        />
       </div>
     </>
   );
