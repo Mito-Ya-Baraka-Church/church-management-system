@@ -30,55 +30,7 @@ export const siteConfig = {
       icon: "dashboard",
     },
   ],
-  dashboardNav: [
-    {
-      title: "Dashboard",
-      href: "/dashboard",
-      icon: "dashboard",
-    },
-    {
-      title: "Members",
-      href: "/dashboard/members",
-      icon: "members",
-    },
-    {
-      title: "Attendance",
-      href: "/dashboard/attendance",
-      icon: "attendance",
-    },
-    {
-      title: "Events",
-      href: "/dashboard/events",
-      icon: "events",
-    },
-    {
-      title: "Finances",
-      href: "/dashboard/finances",
-      icon: "finances",
-    },
-    {
-      title: "Settings",
-      href: "/dashboard/settings",
-      icon: "settings",
-    },
-  ],
-  footerNav: [
-    {
-      title: "Privacy Policy",
-      href: "/privacy-policy",
-      icon: "privacy-policy",
-    },
-    {
-      title: "Terms of Service",
-      href: "/terms-and-conditions",
-      icon: "terms-and-conditions",
-    },
-    {
-      title: "Contact",
-      href: "/contact",
-      icon: "contact",
-    },
-  ],
+
   // please don't remove this array, it's used for the auth middleware
   // please don't add "/" to this array, it's already added in the middleware
   additionalPublicPages: [

@@ -9,7 +9,7 @@ export default function PublicLayout({
   return (
     <>
       <AppHeader />
-      {children}
+      <div className="flex-1 overflow-auto bg-muted/50">{children}</div>
       <AppFooter />
     </>
   );

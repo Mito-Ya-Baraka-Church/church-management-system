@@ -1,11 +1,10 @@
 "use client";
 import useScrollPosition from "@react-hook/window-scroll";
 import { useMemo } from "react";
-import { Nav } from "../main-nav";
-import { SubHeaderNav } from "./sub-header-main-nav";
-import { siteConfig } from "@/config/site";
+import { SubHeaderNav } from "@/components/navigation/dashboard/sub-header-main-nav";
+import { navigationConfig } from "@/config/navigation";
 
-const { dashboardNav } = siteConfig;
+const { dashboardSubHeaderNav } = navigationConfig;
 
 export function DashboardSubHeader() {
   const useRange = (
@@ -37,7 +36,7 @@ export function DashboardSubHeader() {
           transform: `translateX(${navX}px)`,
         }}
       >
-        <SubHeaderNav items={dashboardNav} />
+        <SubHeaderNav items={dashboardSubHeaderNav} />
       </div>
     </>
   );

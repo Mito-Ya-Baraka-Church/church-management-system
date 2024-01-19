@@ -75,6 +75,11 @@ export function DashboardHeader() {
           <ThemeToggle />
         </div>
       </header>
+
+      <div
+        className={` sticky  top-0  hidden bg-background  px-6 pb-[2rem] pt-4 md:flex
+      ${process.env.NEXT_PUBLIC_VERCEL_ENV !== "production" ? "top-4" : ""}`}
+      ></div>
       <DashboardSubHeader />
       <div
         className={`sticky z-50 hidden h-[1.4px]  bg-muted-foreground dark:bg-[#ffffff24] md:flex
