@@ -13,7 +13,9 @@ import { IconGitHub } from "@/components/ui/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { ScalingLogo } from "@/components/navigation/dashboard/scaling-logo";
 import { DashboardSubHeader } from "@/components/navigation/dashboard/dashboard-sub-header";
-
+import { navigationConfig } from "@/config/navigation";
+const { name, githubUrl, showGitHubBtn } = siteConfig;
+const { mainNav } = navigationConfig;
 export function DashboardHeader() {
   return (
     <>
@@ -23,17 +25,17 @@ export function DashboardHeader() {
           <MobileMenu />
           <ScalingLogo />
           <Link className="ml-10 flex items-center justify-center " href="/">
-            <span className="text-xl font-bold ">{siteConfig.name}</span>
+            <span className="text-xl font-bold ">{name}</span>
           </Link>
         </div>
         <div className="flex items-center justify-end space-x-2 py-1">
           <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
             <UserOrSignIn />
           </React.Suspense>
-          {siteConfig.showGitHubBtn && (
+          {showGitHubBtn && (
             <a
               target="_blank"
-              href={`${siteConfig.githubUrl}`}
+              href={`${githubUrl}`}
               rel="noopener noreferrer"
               className={cn(buttonVariants({ variant: "outline" }))}
             >
@@ -52,19 +54,19 @@ export function DashboardHeader() {
         <ScalingLogo />
         <div className="flex items-center justify-start">
           <Link className="mb-2   items-center justify-center " href="/">
-            <span className=" text-xl font-bold ">{siteConfig.name}</span>
+            <span className=" text-xl font-bold ">{name}</span>
           </Link>
         </div>
 
         <div className="flex items-center justify-end space-x-2">
-          <Nav items={siteConfig.mainNav} />
+          <Nav items={mainNav} />
           <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
             <UserOrSignIn />
           </React.Suspense>
-          {siteConfig.showGitHubBtn && (
+          {showGitHubBtn && (
             <a
               target="_blank"
-              href={`${siteConfig.githubUrl}`}
+              href={`${githubUrl}`}
               rel="noopener noreferrer"
               className={cn(buttonVariants({ variant: "outline" }))}
             >

@@ -12,11 +12,9 @@ export default function PublicLayout({
 }) {
   return (
     <>
-      {/* <div className="bg-background"> */}
       <DashboardHeader />
-      {/* </div> */}
       <main className="flex w-full bg-background ">
-        <div className="flex min-h-screen flex-col space-y-6  bg-muted/50 px-12 py-4">
+        <div className="flex min-h-screen w-full flex-col  space-y-6 bg-muted/50 px-12 py-4">
           {subHeader}
 
           {children}

@@ -35,7 +35,9 @@ export function SubHeaderNav({
                     href={item.href}
                     className={cn(
                       "flex items-center text-sm font-medium text-muted-foreground decoration-2 underline-offset-[15px]  hover:text-foreground hover:underline",
-                      pathname === item.href && "text-foreground underline ",
+                      (pathname === item.href ||
+                        item.tabs?.some((tab) => pathname === tab.href)) &&
+                        "text-foreground underline ",
                       item.disabled && "cursor-not-allowed opacity-80",
                       "transition-all duration-300 ease-in-out"
                     )}

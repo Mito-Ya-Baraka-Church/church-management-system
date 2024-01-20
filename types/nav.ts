@@ -3,9 +3,10 @@ export interface NavItem {
   href?: string;
   disabled?: boolean;
   external?: boolean;
+  tabs?: Tab[];
 }
 
 export type Tab = {
-  name: string;
+  title: string;
   href: string;
 };

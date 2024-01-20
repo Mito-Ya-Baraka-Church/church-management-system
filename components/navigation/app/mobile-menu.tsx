@@ -9,8 +9,21 @@ import { IconSidebar } from "@/components/ui/icons";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { Icons } from "@/components/misc/icons";
+import { navigationConfig } from "@/config/navigation";
+import { usePathname } from "next/navigation";
+import { NavItem } from "@/types/nav";
 
+const { mainNav, dashboardSubHeaderNav } = navigationConfig;
 export function MobileMenu() {
+  const pathname = usePathname;
+
+  let navItems: NavItem[] = mainNav;
+
+  const currentPathname = pathname();
+  if (currentPathname.startsWith("/dashboard")) {
+    navItems = dashboardSubHeaderNav;
+  }
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -30,10 +43,10 @@ export function MobileMenu() {
               </Link>
             </div>
 
-            {siteConfig.mainNav.map((item) => (
+            {navItems.map((item: NavItem) => (
               <div className="space-y-2 px-2" key={item.title}>
                 <Link
-                  href={item.href}
+                  href={item.href || "#"}
                   className="flex items-center justify-between text-sm font-medium"
                 >
                   <div className="flex items-center">
@@ -41,7 +54,16 @@ export function MobileMenu() {
                     {/* {item.icon && (
                      <item.icon className="h-6 w-6 text-gray-400" />
                    )} */}
-                    <span className="ml-2 ">{item.title}</span>
+                    <span
+                      className={`ml-2 ${
+                        currentPathname === item.href ||
+                        item.tabs?.some((tab) => currentPathname === tab.href)
+                          ? "text-primary"
+                          : ""
+                      }`}
+                    >
+                      {item.title}
+                    </span>
                   </div>
                 </Link>
               </div>

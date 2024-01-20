@@ -12,7 +12,9 @@ import { Icons } from "@/components/misc/icons";
 import { MobileMenu } from "@/components/navigation/app/mobile-menu";
 
 import { UserOrSignIn } from "@/components/auth/user-or-signin";
+import { navigationConfig } from "@/config/navigation";
 
+const { mainNav } = navigationConfig;
 export function AppHeader() {
   return (
     <header className="sticky top-0 z-50 flex h-16 w-full shrink-0 items-center justify-between border-b bg-gradient-to-b from-background/10 via-background/50 to-background/80 px-4 backdrop-blur-xl">
@@ -27,7 +29,7 @@ export function AppHeader() {
       </div>
 
       <div className="flex items-center justify-end space-x-2">
-        <Nav items={siteConfig.mainNav} />
+        <Nav items={mainNav} />
         <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
           <UserOrSignIn />
         </React.Suspense>

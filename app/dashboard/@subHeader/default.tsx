@@ -20,7 +20,7 @@ export default async function Page() {
 
   return (
     <div className="prose prose-sm prose-invert max-w-none">
-        <DashboardTabs userRole={userRole} />
+      <DashboardTabs />
     </div>
   );
 }

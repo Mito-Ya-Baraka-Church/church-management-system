@@ -18,19 +18,6 @@ export const siteConfig = {
   twitterHandle: "@fredygerman_",
   description:
     "Amazing starter with Supabase Next.js, TypeScript, ESLint, Prettier, chadcn-ui",
-  mainNav: [
-    {
-      title: "Register",
-      href: "/register",
-      icon: "register",
-    },
-    {
-      title: "Dashboard",
-      href: "/dashboard",
-      icon: "dashboard",
-    },
-  ],
-
   // please don't remove this array, it's used for the auth middleware
   // please don't add "/" to this array, it's already added in the middleware
   additionalPublicPages: [
