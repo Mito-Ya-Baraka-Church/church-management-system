@@ -42,16 +42,23 @@ export function DashboardTabs() {
 
   return (
     <>
-      <h2 className="text-2xl font-bold text-foreground">
-        {convertPathToName(pathname)}
-      </h2>
-      <div className="inline-flex  min-h-[40px] flex-wrap items-center justify-between gap-4 rounded-lg bg-muted p-2 text-muted-foreground">
-        <nav className="flex flex-row flex-wrap gap-2">
-          {currentPage && currentPage.tabs && (
-            <>{currentPage.tabs.map((tab) => renderTab(tab))}</>
-          )}
-        </nav>
-      </div>{" "}
+      <div className="grid w-full items-start gap-4 p-4 md:grid-cols-2">
+        {" "}
+        {/* Use grid layout */}
+        <div className="flex flex-col justify-center gap-2">
+          <span className="text-2xl font-bold text-foreground">
+            {convertPathToName(pathname)}
+          </span>
+        </div>
+        <div className="inline-flex flex-wrap items-start justify-between rounded-lg bg-muted p-2 text-muted-foreground">
+          {" "}
+          <nav className="flex flex-row flex-wrap gap-2">
+            {currentPage && currentPage.tabs && (
+              <>{currentPage.tabs.map((tab) => renderTab(tab))}</>
+            )}
+          </nav>
+        </div>
+      </div>
     </>
   );
 }
