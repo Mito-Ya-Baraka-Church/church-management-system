@@ -68,21 +68,6 @@ export const navigationConfig = {
       ],
     },
     {
-      title: "Finances",
-      href: "/dashboard/finances",
-      icon: "finances",
-      tabs: [
-        {
-          title: "All Finances",
-          href: "/dashboard/finances",
-        },
-        {
-          title: "Record Finance",
-          href: "/dashboard/finances/add",
-        },
-      ],
-    },
-    {
       title: "Settings",
       href: "/dashboard/settings",
       icon: "settings",

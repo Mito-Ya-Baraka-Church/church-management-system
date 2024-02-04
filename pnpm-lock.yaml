@@ -161,6 +161,9 @@ dependencies:
   react-redux:
     specifier: ^9.0.4
     version: 9.0.4(@types/react@18.2.47)(react@18.2.0)(redux@5.0.1)
+  react-supabase:
+    specifier: ^0.2.0
+    version: 0.2.0(@supabase/supabase-js@2.39.2)(react@18.2.0)
   react-syntax-highlighter:
     specifier: ^15.5.0
     version: 15.5.0(react@18.2.0)
@@ -5814,6 +5817,16 @@ packages:
       invariant: 2.2.4
       react: 18.2.0
       tslib: 2.6.2
+    dev: false
+
+  /react-supabase@0.2.0(@supabase/supabase-js@2.39.2)(react@18.2.0):
+    resolution: {integrity: sha512-dlAOhkFaWr8ZqHUkWflGvDpFUT69DbWE7+LxmH/a56ma/qS1EinsIKcxskPcPlaWO70QI7hxu9y8imp8qxDCLw==}
+    peerDependencies:
+      '@supabase/supabase-js': ^1.11.6
+      react: ^17.0.0
+    dependencies:
+      '@supabase/supabase-js': 2.39.2
+      react: 18.2.0
     dev: false
 
   /react-syntax-highlighter@15.5.0(react@18.2.0):
