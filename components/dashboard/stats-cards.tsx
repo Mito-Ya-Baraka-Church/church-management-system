@@ -1,71 +1,30 @@
-"use client";
-import React from "react";
 import StatsCard from "@/components/dashboard/stats-card";
+import { getCardsValue } from "@/lib/db/cards";
 import {
   CalendarIcon,
   DollarSignIcon,
   GroupIcon,
   UsersIcon,
 } from "lucide-react";
-import { useRealtime } from "react-supabase";
 
-export function useEvents() {
-  const [{ data, error }] = useRealtime("events", {
-    select: {
-      columns: "id,type",
-    },
-  });
-
-  console.log("data", data ? data : "no data");
-  console.log("error", error ? error : "no error");
-
-  return data;
-}
-
-// export function useMembers() {
-//   const [{ data, error }] = useRealtime('members', {
-//     select: {
-//       columns: 'id,name',
-//     },
-//   })
-
-//   return data
-// }
-
-// export function useAttendance() {
-//   const [{ data, error }] = useRealtime('attendance', {
-//     select: {
-//       columns: 'id,member_id',
-//     },
-//   })
-
-//   return data
-// }
-
-// export function useVisitors() {
-//   const [{ data, error }] = useRealtime('visitors', {
-//     select: {
-//       columns: 'id,name',
-//     },
-//   })
-
-//   return data
-// }
-
-export default function DashboardCards({ userRole }: { userRole: string }) {
-  const eventsCount = useEvents();
-  console.log(eventsCount);
+export default async function DashboardCards({
+  userRole,
+}: {
+  userRole: string;
+}) {
   const statsCards = [
     {
       title: "Total Members",
       icon: <UsersIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />,
-      value: "500",
+      // value: await getCardsValue("members"),
+      value: 100,
       description: "+10 from last week",
     },
     {
       title: "Attendance",
       icon: <GroupIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />,
-      value: "100",
+      // value: await getCardsValue("attendance"),
+      value: 100,
       description: "+10 from last week",
     },
     {
@@ -73,15 +32,17 @@ export default function DashboardCards({ userRole }: { userRole: string }) {
       icon: (
         <CalendarIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
       ),
-      value: "60",
+      value: await getCardsValue("events"),
       description: "+4 from last week",
+      table: "events",
     },
     {
       title: "Visitors",
       icon: (
         <DollarSignIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
       ),
-      value: "50",
+      // value: await getCardsValue("visitors"),
+      value: 100,
       description: "+2 from last week",
     },
   ];
@@ -94,6 +55,7 @@ export default function DashboardCards({ userRole }: { userRole: string }) {
             icon={card.icon}
             value={card.value}
             description={card.description}
+            table={card.table}
           />
         </div>
       ))}

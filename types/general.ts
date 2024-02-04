@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { AppProps } from "next/app";
 
 import { NavItem } from "@/types/nav";
+import { PostgrestError } from "@supabase/supabase-js";
 
 export type children = {
   children: ReactNode;
@@ -42,3 +43,13 @@ export type FormActionResponse = {
 export type NavProps = {
   items?: NavItem[];
 };
+
+export type DbError =
+  | PostgrestError
+  | {
+      isError: true;
+      message: string;
+      details?: string;
+      hint?: string;
+      code?: string;
+    };
