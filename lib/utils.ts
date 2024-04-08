@@ -33,6 +33,18 @@ export async function fetcher<JSON = any>(
   return res.json();
 }
 
+// formart date like updated_at: '2024-04-02T18:09:01.549Z' to locale
+export function formatDateLocale(input: string | number | Date): string {
+  const date = new Date(input);
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+}
+
 export function formatDate(input: string | number | Date): string {
   const date = new Date(input);
   return date.toLocaleDateString("en-US", {
